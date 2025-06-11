@@ -368,7 +368,7 @@ body, html {
 
 .footer-text {
     margin: 0;
-    color: rgba(255,255,255,0.15);
+    color: rgba(255, 255, 255, 0.25);
     transition: oclor 0.3s ease;
 }
 
