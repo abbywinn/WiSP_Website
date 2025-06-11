@@ -37,7 +37,7 @@ body, html {
     font-size: 1rem;
 }
 .site-header .btn-sponsor {
-    padding: 5px 15px;
+    padding: 8px 15px;
     background: transparent;
     border: 1px solid white;
     color: white;
@@ -143,6 +143,7 @@ body, html {
     padding-left: 10vw;
     overflow: hidden;
     height: 100vh;
+    padding-bottom: 20vh;
 }
 .vignette {
     position: absolute;
@@ -150,7 +151,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.93), rgba(0,0,0,0.2));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.2));
     z-index: 1;
     pointer-events: none;
 }
@@ -180,7 +181,7 @@ body, html {
 .line-container {
     position: relative;
     width: 10px;
-    height: 25%;
+    height: 32%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -207,7 +208,7 @@ body, html {
     color: white;
     background: rgba(0,0,0,0.7);
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
     z-index: 2;
@@ -217,6 +218,11 @@ body, html {
     color: black;
     transform: scale(1.05);
 }
+.text-bold {
+    font-weight: 600;
+}
+
+
 /*@media (max-width: 768px) {
     .parallax-content-wrapper{
         flex-direction: column;
@@ -234,7 +240,8 @@ body, html {
 /*Section 3 of Home Page*/
 .info-panels-parallax {
     position: relative;
-    height: 74vh;
+    flex: 1;
+    overflow: auto;
     background-image: url('../assets/images/star_background.jpg');
     background-attachment: fixed;
     background-position: center;
@@ -351,17 +358,24 @@ body, html {
 /*Site footer*/
 .site-footer {
     background-color: #1e1e1e;
-    padding: 60px 0;
+    padding: 60px;
     text-align: center;
     color: rgba(255,255,255,0.15);
     font-size: 1rem;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .footer-text {
     margin: 0;
     color: rgba(255,255,255,0.15);
     transition: oclor 0.3s ease;
+}
+
+.footer-info-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 
