@@ -1,0 +1,364 @@
+body, html {
+    margin: 0;
+    font-family: 'Oxanium',  Arial, sans-serif;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.video-container, .parallax-section {
+    scroll-snap-align: start;
+}
+
+
+
+
+
+/*Header*/
+.site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1vh 20px;
+    background: transparent;
+    transition: background 0.3s ease;
+    z-index: 1000;
+}
+.site-header.scrolled {
+    background: rgba(0,0,0,0.7);
+}
+.site-header .logo {
+    height: 7vh;
+}
+.site-header .navigation a{
+    margin: 0 3vh;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+.site-header .btn-sponsor {
+    padding: 5px 15px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.site-header .btn-sponsor:hover {
+    background: white;
+    color: black;
+}
+
+
+
+
+/*Homepage Background Video Section*/
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 10vw;
+    color: white;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.1));
+}
+.video-overlay h1.title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    text-align: left;
+    text-transform: uppercase;
+    line-height: 1.2;
+    /*text-shadow: 2px 2px 4px rgba(0,0,0,0.7);*/
+}
+.cta-button {
+    padding: 12px 20px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    border: 0px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.cta-button:hover {
+    background: white;
+    color: black;
+    transform: scale(1.05);
+}
+.video-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.6) 10%, transparent 60%);
+    z-index: -1;
+}
+
+
+
+
+.paragraph-text {
+    font-size: 1.2rem;
+}
+
+
+
+
+/*Second Section on Home Page */
+.parallax-section {
+    position: relative;
+    background-image: url('../assets/images/parallax_bg_home.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10vw;
+    overflow: hidden;
+    height: 100vh;
+}
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.93), rgba(0,0,0,0.2));
+    z-index: 1;
+    pointer-events: none;
+}
+.parallax-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2;
+    max-width: 600px;
+    color: white;
+}
+.parallax-content {
+    max-width: 550px;
+    color: white;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+    position: relative;
+    z-index: 2;
+    line-height: 1.5;
+    
+}
+.parallax-section.in-view .parallax-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+.line-container {
+    position: relative;
+    width: 10px;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+.thick-line {
+    width: 4px;
+    border-radius: 2px;
+    height: 0;
+    background-color: white;
+    position: absolute;
+    left: -7px;
+    bottom: 45px;
+    transition: height 1.8s ease;
+    z-index: 2;
+}
+.parallax-section.in-view .thick-line {
+    height: 100%;
+}
+.btn-projects {
+    margin-top: 10px;
+    padding: 12px 18px;
+    font-size: 1.2rem;
+    color: white;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+}
+.btn-projects:hover {
+    background: #f0f0f0;
+    color: black;
+    transform: scale(1.05);
+}
+/*@media (max-width: 768px) {
+    .parallax-content-wrapper{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .line-container {
+        display: none;
+    }
+}*/
+
+
+
+/*Section 3 of Home Page*/
+.info-panels-parallax {
+    position: relative;
+    height: 74vh;
+    background-image: url('../assets/images/star_background.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    scroll-snap-align: start;
+    z-index: 0;
+}
+.info-panels-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.info-panels-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.info-panel {
+    flex: 1;
+    padding: 40px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.section-title {
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+}
+.panel-heading {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+}
+.divider-line-container {
+    position: relative;
+    width: 10px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+.divider-line-container .divider-line {
+    width: 3px;
+    border-radius: 2px;
+    height: 0;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    transition: height 1.8s ease;
+    z-index: 2;
+}
+.panel-text {
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    flex-grow: 1;
+    color: white;
+    
+}
+.panel-button {
+    margin: 30px auto 0;
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    background: none;
+    color: white;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+.panel-button:hover {
+    background: white;
+    color: black;
+    transform: scale(1.05);
+}
+.info-panels-parallax.in-view .divider-line {
+    height: 100%;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.in-view .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*Site footer*/
+.site-footer {
+    background-color: #1e1e1e;
+    padding: 60px 0;
+    text-align: center;
+    color: rgba(255,255,255,0.15);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.footer-text {
+    margin: 0;
+    color: rgba(255,255,255,0.15);
+    transition: oclor 0.3s ease;
+}
