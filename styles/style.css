@@ -3,6 +3,7 @@ body, html {
     font-family: 'Oxanium',  Arial, sans-serif;
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
+    /*height: 100%;*/
 }
 
 .video-container, .parallax-section {
@@ -278,7 +279,7 @@ body, html {
 .section-title {
     color: white;
     font-size: 3rem;
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 60px;
 }
 .panel-heading {
@@ -361,4 +362,131 @@ body, html {
     margin: 0;
     color: rgba(255,255,255,0.15);
     transition: oclor 0.3s ease;
+}
+
+
+/* LEADERSHIP PAGE */
+
+
+
+.leadership-section {
+    background-color: black;
+    color: white;
+    padding: 100px 0;
+    position: relative;
+}
+
+.leadership-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 70px;
+    margin-top: 70px;
+    text-transform: uppercase;
+    transform: translateY(20px);
+    transition: 0.6s ease-out, transform 0.6s ease-out;
+
+}
+.leadership-title.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.profile-name {
+    font-size: 1.4rem;
+    font-weight:700;
+}
+
+.profile-role {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    font-weight: 400;
+    justify-content: left;
+}
+.leadership-subtitle {
+    font-size: 3rem;
+    opacity: 0;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    transform: translateY(20px);
+    transition: 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.leadership-subtitle.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.leadership-card {
+    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.leadership-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.email-icon {
+    color: #ccc;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 1px;
+}
+
+.email-icon:hover {
+    color:white;
+    transform: scale(1.05);
+}
+.profile-img {
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    object-fit: cover;
+    background-color: #ccc;
+    margin-bottom: 15px;
+}
+
+.snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+@media (min-width: 992px) {
+    .col-lg-custom {
+        flex: 0 0 auto;
+        width: 20%;
+        max-width: 20%;
+    }
+}
+
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: white;
+    animation: bounce 2s infinite;
+    z-index: 10;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);}
+    40% {transform: translate(-50%, -10px);}
+    60% {transform: translate(-50%, -5px);}
 }
