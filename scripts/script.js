@@ -48,3 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('.rocket-divider').forEach(el => observeParallaxElement(el));
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu');
+    const navWrapper = document.getElementById('mobile-nav');
+    menuToggle.addEventListener('click', () => {
+        navWrapper.classList.toggle('open');
+    });
+});

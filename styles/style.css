@@ -37,8 +37,71 @@ body, html {
     text-decoration: none;
     font-size: 1rem;
 }
-
-
+.menu-toggle {
+    cursor: pointer;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+}
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+.navigation-wrapper {
+    align-items: center;
+}
+.navigation {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+@media (max-width: 768px) {
+    .navigation-wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: rgba(0,0,0,0.95);
+        height: 100vh;
+        width: 70%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        display: flex;
+    }
+    .navigation-wrapper.open {
+        transform: translateX(0);
+    }
+    .navigation.mobile-nav {
+        padding: 20px 0;
+        color: white;
+        font-size: 1.2rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    .navigation.mobile-nav a{
+        padding: 20px 0;
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        text-decoration: none;
+    }
+    .menu-toggle {
+        z-index: 1001;
+    }
+    .navigation.mobile-nav .btn-outline {
+        padding: 10px 20px;
+    }
+    .navigation.mobile-nav .btn-outline:hover {
+        color: black;
+    }
+}
 
 
 .btn-outline {
