@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
+
                 } else {
                     entry.target.classList.remove('in-view');
                 }
@@ -45,4 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.leadership-card, .leadership-subtitle, .leadership-title, .fade-in').forEach(el => {
         observeParallaxElement(el);
     });
+    document.querySelectorAll('.rocket-divider').forEach(el => observeParallaxElement(el));
 });
