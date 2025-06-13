@@ -3,10 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The Wisconsin Space Program: a student team building a liquid rocket. Join us or explore our missions.">
+        <link rel="icon" href="assets/images/favicon.ico">
         <title>WiSP Website</title>
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-         <link rel="stylesheet" href="styles/style.css">
-         <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&display=swap" rel="stylesheet">
     </head>
     <body>
         <header class="site-header">
@@ -16,11 +19,11 @@
                 </a>
 
                 <nav class="navigation d-none d-md-flex mx-auto">
-                    <a href="#projects">PROJECTS</a>
+                    <a href="projects.html">PROJECTS</a>
                     <a href="leadership.html">LEADERSHIP</a>
-                    <a href="#join-us">JOIN US</a>
-
+                    <a href="join-us.html">JOIN US</a>
                 </nav>
+
                 <a href="sponsor-us.html" class="btn-outline d-none d-md-block ms-auto">SPONSOR US</a>
 
                 <div class="menu-toggle d-md-none" id="mobile-menu">
@@ -30,82 +33,84 @@
                 </div>
             </div>
                 
-                <div class="navigation-wrapper d-md-none" id="mobile-nav">
-                    <nav class="navigation mobile-nav">
-                        <a href="#projects">PROJECTS</a>
-                        <a href="leadership.html">LEADERSHIP</a>
-                        <a href="#join-us">JOIN US</a>
-                        <a href="sponsor-us.html" class="btn-outline">SPONSOR US</a>
-                    </nav>
-                </div>
+            <div class="navigation-wrapper d-md-none" id="mobile-nav">
+                <nav class="navigation mobile-nav">
+                    <a href="projects.html">PROJECTS</a>
+                    <a href="leadership.html">LEADERSHIP</a>
+                    <a href="join-us.html">JOIN US</a>
+                    <a href="sponsor-us.html" class="btn-outline">SPONSOR US</a>
+                </nav>
+            </div>
         </header>
 
          <div class="video-container">
-            <video autoplay loop muted playsinline class="bg-video">
+            <video autoplay loop muted playsinline preload="auto" class="bg-video">
                 <source src="assets/video/WiSP_Video_MP4_HD.mp4" type="video/mp4">
             </video>
             <div class="video-overlay text-center text-white">
                 <h1 class="title">
                     <span class="line1">Wisconsin Space</span><br>
-                    <span class="'line2">Program</span>
+                    <span class="line2">Program</span>
                 </h1>
-                <button class="cta-button">Next Launch</button>
+                <button class="cta-button" aria-label="Learn about the next launch">Next Launch</button>
             </div>
          </div>
 
          <section class="parallax-section">
             <div class="vignette"></div>
-
-                <div class="line-container">
-                        <div class="thick-line"></div>
-                </div>
-                <div class="parallax-content">
-                    <h2 class="text-bold">
-                        The Wisconsin Space Program aims to be the first student team to fly a liquid rocket to the edge of space.
-                    </h2>
-                    <p class="paragraph-text">
-                        Engineers at WiSP design, analyze, manufacture, test, and launch high-powered rocketry systems. We compete in large intercollegiate rocketry competitions, as well as do long-term development on propulsion systems.
-                    </p>
-                    <button class="btn-projects">See Our Projects</button>
-                    </div>
-                </div>
+            <div class="line-container">
+                    <div class="thick-line"></div>
+            </div>
+            <div class="parallax-content">
+                <h2 class="text-bold">
+                    The Wisconsin Space Program aims to be the first student team to fly a liquid rocket to the edge of space.
+                </h2>
+                <p class="paragraph-text">
+                    Engineers at WiSP design, analyze, manufacture, test, and launch high-powered rocketry systems. We compete in large intercollegiate rocketry competitions, as well as do long-term development on propulsion systems.
+                </p>
+                <a href="projects.html" class="btn-projects" >See Our Projects</a>
+            </div>
          </section>
 
 
          <div class="footer-info-container">
-         <section class="info-panels-parallax">
+            <section class="info-panels-parallax" id="join us">
 
             <div class="info-panels-container container text-center">
             <h2 class="subtitle fade-in">JOIN OUR TEAM</h2>
 
                 <div class="row justify-content-center align-items-stretch">
-                <div class="col-md-5 mb-5 info-panel fade-in">
+                    <div class="col-md-5 mb-5 info-panel fade-in">
                     <h2 class="panel-heading">Students</h2>
-                    <p class="panel-text">Interested in joining WiSP as an engineering or business student at the University of Wisconsin–Madison? Learn about our different positions below:</p>
-                    <button class="btn-outline">Join as a Student</button>
-                </div>
+                        <p class="panel-text">
+                            Interested in joining WiSP as an engineering or business student at the University of Wisconsin–Madison? Learn about our different positions below:
+                        </p>
+                        <a href="join-us.html" class="btn-outline">Join as a Student</a>
+                    </div>
 
-                <div class="d-none d-md-flex align-items-center justify-content-center px-0" style="width:40px;">
-                    <div class="rocket-divider">
-                        <div class="rocket-trail"></div>
-                        <img src="assets/images/rocket-block.png" alt="Rocket" class="rocket-icon" />
+                    <div class="d-none d-md-flex align-items-center justify-content-center px-0" style="width:40px;">
+                        <div class="rocket-divider">
+                            <div class="rocket-trail"></div>
+                            <img src="assets/images/rocket-block.png" alt="Rocket" class="rocket-icon" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 mb-5 info-panel fade-in">
+                        <h2 class="panel-heading">Industry Partners</h2>
+                        <p class="panel-text">
+                            Our ambitious projects would be impossible without the support of our generous sponsors. Learn more about ways support our projects below:
+                        </p>
+                        <a href="sponsor-us.html" class="btn-outline">Join as a Sponsor</a>
                     </div>
                 </div>
-
-                <div class="col-md-5 mb-5 info-panel fade-in">
-                    <h2 class="panel-heading">Industry Partners</h2>
-                    <p class="panel-text">Our ambitious projects would be impossible without the support of our generous sponsors. Learn more about ways support our projects below:</p>
-                    <button class="btn-outline">Join as a Sponsor</button>
-                </div>
-                </div>
             </div>
-         </section>
-         
-           <footer class="site-footer">
-            <p class="footer-text">© 2025 Wisconsin Space Program</p>
-           </footer>
+            </section>
+    
+            <footer class="site-footer">
+                <p class="footer-text">© 2025 Wisconsin Space Program</p>
+            </footer>
          </div>
 
-           <script src="scripts/script.js"></script>
+         <script src="scripts/script.js"></script>
     </body>
 </html>
