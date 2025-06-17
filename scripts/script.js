@@ -113,14 +113,46 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const partData = {
-    'nose-cone': { name: 'Nose Cone', text: 'Von Kármán-shaped nose cone.', img: 'assets/images/rocket/parts/nose-cone.png' },
-    'main-chute': { name: 'Main Chute', text: 'Main chute deploys at apogee.', img: 'assets/images/rocket/parts/main-chute.png' },
-    'av-bay': { name: 'Avionics Bay', text: 'Avionics bay for flight electronics.', img: 'assets/images/rocket/parts/av-bay.png' },
-    'drogue-chute': { name: 'Drogue Chute', text: 'Drogue chute slows descent.', img: 'assets/images/rocket/parts/drogue-chute.png' },
-    'copvs': { name: 'COPVs', text: 'COPVs store nitrogen.', img: 'assets/images/rocket/parts/copvs.png' },
-    'ipa-tank': { name: 'IPA Tank', text: 'IPA fuel tank.', img: 'assets/images/rocket/parts/ipa-tank.png' },
-    'lox-tank': { name: 'LOX Tank', text: 'LOX oxidizer tank.', img: 'assets/images/rocket/parts/lox-tank.png' },
-    'fins-nozzle': { name: 'Fins & Nozzle', text: 'Stabilizing fins & engine nozzle.', img: 'assets/images/rocket/parts/fins-nozzle.png' },
+ 'nose-cone': { 
+    name: 'Nose Cone', 
+    text: 'Our carbon fiber nosecone features a Von Kármán shape to reduce aerodynamic drag during flight and maintain stability at high speeds.', 
+    img: 'assets/images/rocket/parts/nose-cone.png' 
+  },
+  'main-chute': { 
+    name: 'Main Chute', 
+    text: 'The main chute is a large parachute deployed during the final phase of descent. It drastically reduces the rocket\'s speed in order to achieve a controlled landing.', 
+    img: 'assets/images/rocket/parts/main-chute.png' 
+  },
+  'av-bay': { 
+    name: 'Avionics Bay', 
+    text: 'The avionics bay is a compartment that houses the Half Badger\'s electronic systems, such as the flight computer and GPS. It is built to protect this equipment from shock loads, heat, and other environmental factors during flight.', 
+    img: 'assets/images/rocket/parts/av-bay.png' 
+  },
+  'drogue-chute': { 
+    name: 'Drogue Chute', 
+    text: 'The drogue chute is a smaller parachute that deploys shortly after the rocket reaches apogee. At this time, a controlled charge in the charge wells breaks the shear pins to release the chute. The drogue chute stabilizes the rocket during the initial phase of descent before the main chute deploys.', 
+    img: 'assets/images/rocket/parts/drogue-chute.png' 
+  },
+  'copvs': { 
+    name: 'Dual COPVs', 
+    text: 'Half Badger uses two composite overwrapped pressure vessels (COPVs) to pressurize the IPA and LOX tanks. High-pressure nitrogen gas is regulated and fed into the propellant tanks to move the fuel and oxidizer into the combustion chamber.', 
+    img: 'assets/images/rocket/parts/copvs.png' 
+  },
+  'ipa-tank': { 
+    name: 'IPA Tank', 
+    text: 'The IPA tank stores isopropyl alcohol, which is used as the fuel in our propulsion system. The tank is pressurized to maintain a consistent fuel flow to the engine during ignition and flight.', 
+    img: 'assets/images/rocket/parts/ipa-tank.png' 
+  },
+  'lox-tank': { 
+    name: 'LOX Tank', 
+    text: 'The LOX tank stores liquid oxygen, which serves as the oxidizer in our propulsion system. Since oxygen boils at around -183°C (-297°F) under normal atmospheric pressure, the tank is designed to handle cryogenic conditions. In particular, the end caps are sealed with Teflon O-rings, which are compatible with low temperatures.', 
+    img: 'assets/images/rocket/parts/lox-tank.png' 
+  },
+  'fins-nozzle': { 
+    name: 'Fins & Nozzle', 
+    text: 'The Half Badger\'s fins help it to fly straight during flight and avoid excessive rotation. The engine nozzle expands and accelerates gases produced by combustion, creating thrust that propels the rocket upward.', 
+    img: 'assets/images/rocket/parts/fins-nozzle.png' 
+  },
   };
 
   let lastKey = 'av-bay';
@@ -149,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     glowAnim?.kill();
     glowAnim = gsap.to(target, {
       scale: 1.05,
-      filter: 'drop-shadow(0 0 20px rgba(255,255,255,1))',
+      filter: 'drop-shadow(0 0 15px rgba(255,255,255,1))',
       duration: 0.6,
       repeat: -1,
       yoyo: true,
@@ -185,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ScrollTrigger.create({
     trigger: '#scroll-rocket',
-    start: 'top top',
+    start: 'top 75%',
     once: true,
     onEnter: () => {
       stopGlow();
@@ -202,4 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .to(el.altBg, { autoAlpha: 1, duration: 1 }, 0.8);
     },
   });
+
+  const scrollArrow = document.getElementById('scrollArrow');
+  if (scrollArrow) {
+    scrollArrow.addEventListener('click', () => {
+      const nextSection = document.getElementById('scroll-rocket');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
 });
