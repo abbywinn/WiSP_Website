@@ -1,12 +1,4 @@
-body, html {
-    margin: 0;
-    font-family: 'Oxanium',  Arial, sans-serif;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    background-color: black;
-    overflow-y: scroll;
-    height: 100%;
-}
+
 
 .video-container, .parallax-section {
     scroll-snap-align: start;
@@ -685,4 +677,244 @@ body, html {
     color: black;
     transform: scale(1.05);
     background: white;
+}
+
+
+
+
+
+
+
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Oxanium', sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+.scroll-section {
+  height: 100vh;
+}
+
+.fixed-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+
+#rocketWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#rocketExterior,
+#rocketInterior {
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  max-width: 90vw; 
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.rocket-part {
+  position: absolute;
+  top: 68%;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rocket-part:hover {
+  filter: drop-shadow(0 0 15px white);
+  transform: translateY(-50%) scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.container.position-fixed {
+  top: 20%;
+}
+
+.title-box {
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  padding-left: 10%;
+}
+
+.section-title {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-description {
+  font-size: 1.2rem;
+}
+
+.countdown-box {
+  text-align: center;
+  user-select: none;
+  opacity: 0;
+  pointer-events: auto;
+  padding-top: 2rem;
+}
+
+.countdown-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.countdown-unit {
+  font-size: 1.5rem;
+  background: #222;
+  opacity: 0.7;
+  padding: 1rem 0.9rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-grid {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.info-box {
+  pointer-events: auto;
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  z-index: 20;
+  width: 35%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  color: white;
+}
+
+.info-img-wrapper {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.info-img-wrapper img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+#info-heading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#info-text {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+#info-img {
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+
+.background-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.starry-bg {
+  background-image: url('../assets/images/star_background.jpg');
+  z-index: 1;
+  opacity: 1;
+}
+
+.alt-bg {
+  background-image: url('../assets/images/launch-background.jpg');
+  z-index: 2;
+  opacity: 0;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #000;
+  color: #fff;
+}
+
+.rocket-part[data-part="nose-cone"] {
+  left: 4%;
+  width: 15%;
+  z-index: 2;
+}
+.rocket-part[data-part="main-chute"] {
+  left: 17.5%;
+  width: 7%;
+  z-index: 1;
+}
+.rocket-part[data-part="av-bay"] {
+  left: 24.8%;
+  width: 8.4%;
+  z-index: 2;
+}
+.rocket-part[data-part="drogue-chute"] {
+  left: 33.1%;
+  width: 4.4%;
+}
+.rocket-part[data-part="copvs"] {
+  left: 41.3%;
+  width: 16%;
+}
+.rocket-part[data-part="ipa-tank"] {
+  left: 60.2%;
+  width: 14.5%;
+  z-index: 1;
+}
+.rocket-part[data-part="lox-tank"] {
+  left: 78.1%;
+  width: 10%;
+  z-index: 1;
+}
+.rocket-part[data-part="fins-nozzle"] {
+  bottom: 5%;
+  left: 87%;
+  width: 8.7%;
+  z-index: 2;
 }
