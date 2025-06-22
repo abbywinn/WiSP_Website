@@ -95,7 +95,6 @@ updateCountdown();
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -113,96 +112,97 @@ document.addEventListener('DOMContentLoaded', () => {
     support: document.querySelectorAll('.rocket-support'),
   };
 
+  const partsArray = [...el.parts];
+  const supportArray = [...el.support];
+
   const partData = {
- 'nose-cone': { 
-    name: 'Nose Cone', 
-    text: 'Our carbon fiber nosecone features a Von Kármán shape to reduce aerodynamic drag during flight and maintain stability at high speeds.', 
-    img: 'assets/images/rocket/parts/nose-cone.png' 
-  },
-  'main-chute': { 
-    name: 'Main Chute', 
-    text: 'The main chute is a large parachute deployed during the final phase of descent. It drastically reduces the rocket\'s speed in order to achieve a controlled landing.', 
-    img: 'assets/images/rocket/parts/main-chute.png' 
-  },
-  'av-bay': { 
-    name: 'Avionics Bay', 
-    text: 'The avionics bay is a compartment that houses the Half Badger\'s electronic systems, such as the flight computer and GPS. It is built to protect this equipment from shock loads, heat, and other environmental factors during flight.', 
-    img: 'assets/images/rocket/parts/av-bay.png' 
-  },
-  'drogue-chute': { 
-    name: 'Drogue Chute', 
-    text: 'The drogue chute is a smaller parachute that deploys shortly after the rocket reaches apogee. At this time, a controlled charge in the charge wells breaks the shear pins to release the chute. The drogue chute stabilizes the rocket during the initial phase of descent before the main chute deploys.', 
-    img: 'assets/images/rocket/parts/drogue-chute.png' 
-  },
-  'copvs': { 
-    name: 'Dual COPVs', 
-    text: 'Half Badger uses two composite overwrapped pressure vessels (COPVs) to pressurize the IPA and LOX tanks. High-pressure nitrogen gas is regulated and fed into the propellant tanks to move the fuel and oxidizer into the combustion chamber.', 
-    img: 'assets/images/rocket/parts/copvs.png' 
-  },
-  'ipa-tank': { 
-    name: 'IPA Tank', 
-    text: 'The IPA tank stores isopropyl alcohol, which is used as the fuel in our propulsion system. The tank is pressurized to maintain a consistent fuel flow to the engine during ignition and flight.', 
-    img: 'assets/images/rocket/parts/ipa-tank.png' 
-  },
-  'lox-tank': { 
-    name: 'LOX Tank', 
-    text: 'The LOX tank stores liquid oxygen, which serves as the oxidizer in our propulsion system. Since oxygen boils at around -183°C (-297°F) under normal atmospheric pressure, the tank is designed to handle cryogenic conditions. In particular, the end caps are sealed with Teflon O-rings, which are compatible with low temperatures.', 
-    img: 'assets/images/rocket/parts/lox-tank.png' 
-  },
-  'fins-nozzle': { 
-    name: 'Fins & Nozzle', 
-    text: 'The Half Badger\'s fins help it to fly straight during flight and avoid excessive rotation. The engine nozzle expands and accelerates gases produced by combustion, creating thrust that propels the rocket upward.', 
-    img: 'assets/images/rocket/parts/fins-nozzle.png' 
-  },
+    'nose-cone': { 
+      name: 'Nose Cone', 
+      text: 'Our carbon fiber nosecone features a Von Kármán shape to reduce aerodynamic drag during flight and maintain stability at high speeds.', 
+      img: 'assets/images/rocket/parts/nose-cone.png' 
+    },
+    'main-chute': { 
+      name: 'Main Chute', 
+      text: 'The main chute is a large parachute deployed during the final phase of descent. It drastically reduces the rocket\'s speed in order to achieve a controlled landing.', 
+      img: 'assets/images/rocket/parts/main-chute.png' 
+    },
+    'av-bay': { 
+      name: 'Avionics Bay', 
+      text: 'The avionics bay is a compartment that houses the Half Badger\'s electronic systems, such as the flight computer and GPS. It is built to protect this equipment from shock loads, heat, and other environmental factors during flight.', 
+      img: 'assets/images/rocket/parts/av-bay.png' 
+    },
+    'drogue-chute': { 
+      name: 'Drogue Chute', 
+      text: 'The drogue chute is a smaller parachute that deploys shortly after the rocket reaches apogee. At this time, a controlled charge in the charge wells breaks the shear pins to release the chute. The drogue chute stabilizes the rocket during the initial phase of descent before the main chute deploys.', 
+      img: 'assets/images/rocket/parts/drogue-chute.png' 
+    },
+    'copvs': { 
+      name: 'Dual COPVs', 
+      text: 'Half Badger uses two composite overwrapped pressure vessels (COPVs) to pressurize the IPA and LOX tanks. High-pressure nitrogen gas is regulated and fed into the propellant tanks to move the fuel and oxidizer into the combustion chamber.', 
+      img: 'assets/images/rocket/parts/copvs.png' 
+    },
+    'ipa-tank': { 
+      name: 'IPA Tank', 
+      text: 'The IPA tank stores isopropyl alcohol, which is used as the fuel in our propulsion system. The tank is pressurized to maintain a consistent fuel flow to the engine during ignition and flight.', 
+      img: 'assets/images/rocket/parts/ipa-tank.png' 
+    },
+    'lox-tank': { 
+      name: 'LOX Tank', 
+      text: 'The LOX tank stores liquid oxygen, which serves as the oxidizer in our propulsion system. Since oxygen boils at around -183°C (-297°F) under normal atmospheric pressure, the tank is designed to handle cryogenic conditions. In particular, the end caps are sealed with Teflon O-rings, which are compatible with low temperatures.', 
+      img: 'assets/images/rocket/parts/lox-tank.png' 
+    },
+    'fins-nozzle': { 
+      name: 'Fins & Nozzle', 
+      text: 'The Half Badger\'s fins help it to fly straight during flight and avoid excessive rotation. The engine nozzle expands and accelerates gases produced by combustion, creating thrust that propels the rocket upward.', 
+      img: 'assets/images/rocket/parts/fins-nozzle.png' 
+    },
   };
 
   let lastKey = 'av-bay';
   let glowAnim = null;
   let introComplete = false;
 
-  gsap.set([el.interior, el.title, el.countdown, el.info, ...el.parts, el.altBg], { autoAlpha: 0 });
-  gsap.set(el.exterior, { x: '100vw', autoAlpha: 1 });
-  gsap.set(el.title, { y: 30 });
+gsap.set([el.interior, el.title, el.countdown, el.info, ...partsArray, el.altBg], { autoAlpha: 0 });
+gsap.set(el.exterior, { x: '100vw', autoAlpha: 1 });
+gsap.set(el.title, { y: 30 });
 
-  gsap.timeline({
-    defaults: { ease: 'power3.out' },
-    onComplete: () => {
-      introComplete = true;
-      showInfo(lastKey);
-      startGlow(document.querySelector('[data-part="av-bay"]'));
-    }
-  })
-    .to(el.exterior, { x: 0, duration: 1 }, 0)
-    .to(el.title, { autoAlpha: 1, y: 0, duration: 1 }, 0)
-    .to(el.exterior, { autoAlpha: 0, duration: 0.5, delay: 0.2 })
-    .to(el.interior, { autoAlpha: 1, duration: 0.5 }, '<')
-    .to(el.support, { autoAlpha: 1, duration: 0 }, '<0.3')
-    .to(el.parts, { autoAlpha: 1, stagger: 0, duration: 0.2 }, '<') 
+gsap.timeline({
+  defaults: { ease: 'power3.out' },
+  onComplete: () => {
+    introComplete = true;
+    showInfo(lastKey);
+    startGlow(document.querySelector('[data-part="av-bay"]'));
+  }
+})
+  .to(el.title, { autoAlpha: 1, y: 0, duration: 1 }, 0)
+  .to(el.exterior, { x: 0, duration: 0.7 }, 0)
+  .to(el.exterior, { autoAlpha: 1, duration: 0.7 }, '<')
+  
+  .to(el.exterior, { autoAlpha: 0, duration: 0.2 }, '>')
+  
+  .to(el.interior, { autoAlpha: 1, duration: 0 }, '<')
+  .to(supportArray, { autoAlpha: 1, duration: 0 }, '<')
+  
+  .to(partsArray, { autoAlpha: 1, stagger: 0, duration: 0.1 }, '>');
 
-
-    
-  // Start glow animation on a part
   function startGlow(target) {
     glowAnim?.kill();
     glowAnim = gsap.to(target, {
       scale: 1.05,
       filter: `
         drop-shadow(0 0 20px rgba(255,255,255,1))
-        drop-shadow(0 0 20px rgba(255,255,255,1))
+        drop-shadow(0 0 20px rgba(255,255,255,0.5))
       `,
-      duration: 0.7,
+      duration: 1,
       repeat: -1,
       yoyo: true,
-      ease: 'power3.inOut',
+      ease: 'power1.inOut',
     });
   }
 
-  // Stop any glow animations
   function stopGlow() {
     glowAnim?.kill();
-    document.querySelectorAll('.rocket-part').forEach(p =>
-      gsap.set(p, { clearProps: 'scale,filter' })
-    );
+    partsArray.forEach(p => gsap.set(p, { clearProps: 'scale,filter' }));
   }
 
   function showInfo(key) {
@@ -214,9 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.to(el.info, { autoAlpha: 1, duration: 0.3 });
   }
 
-  el.parts.forEach(part => {
+  partsArray.forEach(part => {
     const key = part.dataset.part;
-
     part.addEventListener('mouseenter', () => {
       if (!introComplete) return;
       stopGlow();
@@ -226,25 +225,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  ScrollTrigger.create({
-    trigger: '#scroll-rocket',
-    start: 'top 75%',
-    once: true,
-    onEnter: () => {
-      stopGlow();
+ScrollTrigger.create({
+  trigger: '#scroll-rocket',
+  start: 'top 75%',
+  end: 'bottom top',
+  scrub: true,
+    snap: {
+    snapTo: 1 / 4, 
+    duration: 0.5, 
+    ease: 'power1.inOut',
+  },
+  animation: gsap.timeline({ defaults: { ease: 'power2.inOut' } })
+    .to(el.exterior, { autoAlpha: 1, duration: 0.3 }, 0)
+    .to([el.title, el.interior, ...partsArray, ...supportArray], { autoAlpha: 0, duration: 0.3 }, 0)
+    .to([el.heading, el.text, el.img], { autoAlpha: 0, duration: 0.3 }, 0)
 
-      const scrollTl = gsap.timeline({
-        defaults: { ease: 'power2.inOut' }
-      });
+    .to(el.exterior, { x: '-100vw', duration: 1 }, 0.3)
 
-      scrollTl
-        .to([el.title, el.interior, el.parts, el.info], { autoAlpha: 0, duration: 0.3 }, 0)
-        .set(el.exterior, { autoAlpha: 1 }, 0.2)
-        .to(el.exterior, { x: '-100vw', duration: 1 }, 0.3)
-        .to(el.countdown, { autoAlpha: 1, duration: 1 }, 0.8)
-        .to(el.altBg, { autoAlpha: 1, duration: 1 }, 0.8);
-    },
-  });
+    .to(el.countdown, { autoAlpha: 1, duration: 0.5 }, 1.2)
+    .to(el.altBg, { autoAlpha: 1, duration: 0.5 }, 1.2)
+});
 
   const scrollArrow = document.getElementById('scrollArrow');
   if (scrollArrow) {

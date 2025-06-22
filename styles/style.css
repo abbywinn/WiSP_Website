@@ -1,5 +1,7 @@
 
 
+
+
 .video-container, .parallax-section {
     scroll-snap-align: start;
 }
@@ -717,11 +719,7 @@ html, body {
   transition: opacity 0.3s;
 }
 
-.rocket-part:hover {
-  filter: drop-shadow(0 0 15px white);
-  transform: translateY(-50%) scale(1.05);
-  transition: all 0.3s ease;
-}
+
 
 .container.position-fixed {
   top: 20%;
