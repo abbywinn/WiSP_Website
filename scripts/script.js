@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     text: document.getElementById('info-text'),
     img: document.getElementById('info-img'),
     altBg: document.querySelector('.alt-bg'),
+    support: document.querySelectorAll('.rocket-support'),
   };
 
   const partData = {
@@ -175,23 +176,33 @@ document.addEventListener('DOMContentLoaded', () => {
     .to(el.title, { autoAlpha: 1, y: 0, duration: 1 }, 0)
     .to(el.exterior, { autoAlpha: 0, duration: 0.5, delay: 0.2 })
     .to(el.interior, { autoAlpha: 1, duration: 0.5 }, '<')
-    .to(el.parts, { autoAlpha: 1, stagger: 0, duration: 0.2 }, '<0.3');
+    .to(el.support, { autoAlpha: 1, duration: 0 }, '<0.3')
+    .to(el.parts, { autoAlpha: 1, stagger: 0, duration: 0.2 }, '<') 
 
+
+    
+  // Start glow animation on a part
   function startGlow(target) {
     glowAnim?.kill();
     glowAnim = gsap.to(target, {
       scale: 1.05,
-      filter: 'drop-shadow(0 0 15px rgba(255,255,255,1))',
-      duration: 0.6,
+      filter: `
+        drop-shadow(0 0 20px rgba(255,255,255,1))
+        drop-shadow(0 0 20px rgba(255,255,255,1))
+      `,
+      duration: 0.7,
       repeat: -1,
       yoyo: true,
-      ease: 'power1.inOut',
+      ease: 'power3.inOut',
     });
   }
 
+  // Stop any glow animations
   function stopGlow() {
     glowAnim?.kill();
-    document.querySelectorAll('.rocket-part').forEach(p => gsap.set(p, { clearProps: 'scale,filter' }));
+    document.querySelectorAll('.rocket-part').forEach(p =>
+      gsap.set(p, { clearProps: 'scale,filter' })
+    );
   }
 
   function showInfo(key) {

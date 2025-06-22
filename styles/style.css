@@ -885,6 +885,7 @@ html, body {
 .rocket-part[data-part="copvs"] {
   left: 41.3%;
   width: 16%;
+  z-index: 1;
 }
 .rocket-part[data-part="ipa-tank"] {
   left: 60.2%;
@@ -902,6 +903,23 @@ html, body {
   width: 8.7%;
   z-index: 2;
 }
+
+/* ===== Rocket Supports ===== */
+.rocket-support {
+  position: absolute;
+  top: 68%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+
+.rocket-support[data-part="copv-fwd-support"]  { bottom: 50%; left: 37.6%; width: 5%;   z-index: 2; }
+.rocket-support[data-part="copv-aft-support"]  { bottom: 50%; left: 55.9%; width: 6.5%; z-index: 2; }
+.rocket-support[data-part="interstage"]        { bottom: 50%; left: 74%;   width: 4.9%; z-index: 2; }
+
 
 .scroll-down-arrow {
   position: absolute;
