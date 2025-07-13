@@ -57,30 +57,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const launchDate = new Date("December 15, 2025 10:00:00").getTime();
-const countdownElement = document.getElementById("countdown");
-function updateCountdown() {
-    const now=new Date().getTime();
-    const timeLeft = launchDate - now;
 
-    if (timeLeft <= 0){
-        document.getElementById("t-minus").innerText = "";
-        document.getElementById("countdown-container").innerHTML = "<div class='countdown-title'>LAUNCHED!</div>";
-        return;
-    }
-    const days = Math.floor(timeLeft/(1000*60*60*24))
-    const hours = Math.floor((timeLeft%(1000*60*60*24))/(1000*60*60));
-    const minutes = Math.floor((timeLeft % (1000*60*60))/(1000*60));
-    const seconds = Math.floor((timeLeft % (1000*60))/1000);
 
-    document.getElementById("days").innerText = String(days).padStart(2, '0');
-    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-    document.getElementById("minutes").innerText = String(minutes).padStart(2,'0');
-    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-
-    const delay = 1000 - (now % 1000);
-    setTimeout(updateCountdown, delay);
+const launchDate = new Date("May 27, 2026 10:00:00").getTime();
+function pad(num) {
+  return String(num).padStart(2, '0');
 }
+function updateCountdown() {
+  const now = new Date().getTime();
+  const timeLeft = launchDate - now;
+  if (timeLeft <= 0) {
+    document.getElementById("t-minus").innerText = "";
+    document.getElementById("countdown-container").innerHTML =
+      "<div class='countdown-title'>LAUNCHED</div>";
+    return;
+  }
+  const days = Math.floor(timeLeft / (1000*60*60*24));
+  const hours = Math.floor((timeLeft % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((timeLeft % (1000*60* 60)) / (1000*60));
+  const seconds = Math.floor((timeLeft % (1000*60)) / 1000);
+  document.getElementById("days").textContent = pad(days);
+  document.getElementById("hours").textContent = pad(hours);
+  document.getElementById("minutes").textContent = pad(minutes);
+  document.getElementById("seconds").textContent = pad(seconds);
+  const delay = 1000 - (now % 1000);
+  setTimeout(updateCountdown, delay);
+}
+
 updateCountdown();
 
 
@@ -107,8 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
     info: document.querySelector('.info-box'),
     heading: document.getElementById('info-heading'),
     text: document.getElementById('info-text'),
+    desc: document.querySelector('.section-description'),
     img: document.getElementById('info-img'),
-    altBg: document.querySelector('.alt-bg'),
+    bg2: document.querySelector('.alt-bg'),
     support: document.querySelectorAll('.rocket-support'),
   };
 
@@ -161,8 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastKey = 'av-bay';
   let glowAnim = null;
   let introComplete = false;
-
-gsap.set([el.interior, el.title, el.countdown, el.info, ...partsArray, el.altBg], { autoAlpha: 0 });
+  
+gsap.set([el.interior, el.countdown, el.info, ...partsArray, el.altBg], { autoAlpha: 0 });
 gsap.set(el.exterior, { x: '100vw', autoAlpha: 1 });
 gsap.set(el.title, { y: 30 });
 
@@ -225,26 +229,34 @@ gsap.timeline({
     });
   });
 
+
+
+
+
 ScrollTrigger.create({
-  trigger: '#scroll-rocket',
-  start: 'top 75%',
-  end: 'bottom top',
-  scrub: true,
-    snap: {
-    snapTo: 1 / 4, 
-    duration: 0.5, 
-    ease: 'power1.inOut',
-  },
-  animation: gsap.timeline({ defaults: { ease: 'power2.inOut' } })
-    .to(el.exterior, { autoAlpha: 1, duration: 0.3 }, 0)
-    .to([el.title, el.interior, ...partsArray, ...supportArray], { autoAlpha: 0, duration: 0.3 }, 0)
-    .to([el.heading, el.text, el.img], { autoAlpha: 0, duration: 0.3 }, 0)
-
-    .to(el.exterior, { x: '-100vw', duration: 1 }, 0.3)
-
-    .to(el.countdown, { autoAlpha: 1, duration: 0.5 }, 1.2)
-    .to(el.altBg, { autoAlpha: 1, duration: 0.5 }, 1.2)
+  trigger: "#scroll-rocket",
+  start: "top 30%",
+  onEnter: () => fadeToAltBackground(true),
+  onLeaveBack: () => fadeToAltBackground(false)
 });
+
+function fadeToAltBackground(toAlt) {
+  const el = {
+    bg1: document.querySelector('.starry-bg'),
+    bg2: document.querySelector('.alt-bg'),
+  };
+
+  if (toAlt) {
+    gsap.to(el.bg1, { autoAlpha: 0, duration: 0.5 });
+    gsap.to(el.bg2, { autoAlpha: 1, duration: 0.5 });
+  } else {
+    gsap.to(el.bg1, { autoAlpha: 1, duration: 0.5 });
+    gsap.to(el.bg2, { autoAlpha: 0, duration: 0.5 });
+  }
+}
+
+
+
 
   const scrollArrow = document.getElementById('scrollArrow');
   if (scrollArrow) {

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 </head>
 <body style="overflow: hidden">
 
@@ -44,76 +45,106 @@
                 </nav>
             </div>
         </header>
-
-<div class="background-wrapper">
-  <div class="background starry-bg"></div>
-  <div class="background alt-bg"></div>
+        
+<div class="background-container">
+  <div class="starry-bg"></div>
+  <div class="alt-bg"></div>
 </div>
 
-<div class="scroll-section" id="scroll-start"></div>
-<div class="scroll-section" id="scroll-rocket"></div>
-<div class="scroll-section" id="scroll-info"></div>
-<div class="scroll-section" id="scroll-countdown"></div>
 
+<section class="rocket-section">
 
-
-<div class="fixed-content">
-  <div class="container position-fixed top-15 start-10" style="z-index:20; pointer-events:auto;">
-    <div class="row align-items-start">
-      <div class="col-md-6 title-box">
+    <div class="double-container">
+      <div class="title-box">
         <h1 class="section-title">HALF BADGER</h1>
-        <p class="section-description">
-          The <em>Half Badger</em> is the Wisconsin Space Program's first venture into liquid rocketry. It is set to fly at the FAR-OUT competition in Mojave, California in May 2026.
+        <p class="section-description" id="section-description">
+          The <em>Half Badger</em> is the Wisconsin Space Program's first venture into liquid rocketry, and is set to fly at the 2026 FAR-OUT competition in Mojave, California. This project sets the technical foundation for our next objective: creating a liquid rocket capable of reaching the Káráman line at 100 kilometers above sea level.
         </p>
       </div>
+
+      <div class="info-box">
+        <div id="info-heading" class="info-title"></div>
+        <div id="info-text" class="info-description"></div>
+        <div class="info-img-wrapper">
+          <img id="info-img" src="" />
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div id="rocketWrapper">
-    <img src="assets/images/rocket/rocket-exterior.png" id="rocketExterior" />
-    <img src="assets/images/rocket/rocket-interior.png" id="rocketInterior" />
-    <img class="rocket-part" data-part="nose-cone" src="assets/images/rocket/parts/nose-cone.png" />
-    <img class="rocket-part" data-part="main-chute" src="assets/images/rocket/parts/main-chute.png" />
-    <img class="rocket-part" data-part="av-bay" src="assets/images/rocket/parts/av-bay.png" />
-    <img class="rocket-part" data-part="drogue-chute" src="assets/images/rocket/parts/drogue-chute.png" />
-    <img class="rocket-part" data-part="copvs" src="assets/images/rocket/parts/copvs.png" />
-    <img class="rocket-part" data-part="ipa-tank" src="assets/images/rocket/parts/ipa-tank.png" />
-    <img class="rocket-part" data-part="lox-tank" src="assets/images/rocket/parts/lox-tank.png" />
-    <img class="rocket-part" data-part="fins-nozzle" src="assets/images/rocket/parts/fins-nozzle.png" />
-        <img class="rocket-support" data-part="copv-fwd-support" src="assets/images/rocket/copv-fwd-support.png"/>
-    <img class="rocket-support" data-part="copv-aft-support" src="assets/images/rocket/copv-aft-support.png"/>
-    <img class="rocket-support" data-part="interstage" src="assets/images/rocket/interstage.png"/>
-  </div>
-
-  <div class="info-box">
-    <div id="info-heading" class="info-title"></div>
-    <div id="info-text" class="info-description"></div>
-    <div class="info-img-wrapper">
-      <img id="info-img" src="" />
+    <div id="scroll-rocket" class="rocket-diagram">
+      <img src="assets/images/rocket/rocket-exterior.png" id="rocketExterior" />
+      <img src="assets/images/rocket/rocket-interior.png" id="rocketInterior" />
+      <img class="rocket-part" data-part="nose-cone" src="assets/images/rocket/parts/nose-cone.png" />
+      <img class="rocket-part" data-part="main-chute" src="assets/images/rocket/parts/main-chute.png" />
+      <img class="rocket-part" data-part="av-bay" src="assets/images/rocket/parts/av-bay.png" />
+      <img class="rocket-part" data-part="drogue-chute" src="assets/images/rocket/parts/drogue-chute.png" />
+      <img class="rocket-part" data-part="copvs" src="assets/images/rocket/parts/copvs.png" />
+      <img class="rocket-part" data-part="ipa-tank" src="assets/images/rocket/parts/ipa-tank.png" />
+      <img class="rocket-part" data-part="lox-tank" src="assets/images/rocket/parts/lox-tank.png" />
+      <img class="rocket-part" data-part="fins-nozzle" src="assets/images/rocket/parts/fins-nozzle.png" />
+      <img class="rocket-support" data-part="copv-fwd-support" src="assets/images/rocket/copv-fwd-support.png" />
+      <img class="rocket-support" data-part="copv-aft-support" src="assets/images/rocket/copv-aft-support.png" />
+      <img class="rocket-support" data-part="interstage" src="assets/images/rocket/interstage.png" /> 
     </div>
-  </div>
-
-  <div id="scrollArrow" class="scroll-down-arrow">
-    <i class="bi bi-chevron-down"></i>
-  </div>
-
-  <div class="countdown-box">
-    <h2 class="countdown-title">Time Until Launch</h2>
-    <div class="d-flex justify-content-center gap-3 countdown-grid">
-      <div class="countdown-unit" id="days">00</div>
-      <div class="countdown-unit" id="hours">00</div>
-      <div class="countdown-unit" id="minutes">00</div>
-      <div class="countdown-unit" id="seconds">00</div>
+    
+    <div class="scroll-down-arrow">
+      <i class="bi bi-chevron-down"></i>
     </div>
-  </div>
-</div>
 
-<footer class="site-footer">
-  <p class="footer-text">© 2025 Wisconsin Space Program</p>
-</footer>
+  </section>  
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="scripts/script.js"></script>
+  <section class="dashboard-section">
+    <div class="title-box">
+      <div class="section-title">STATS</div>
+    </div>
+
+    <div class="dashboard-bg"></div>
+    <div class="timeline-container">
+      Launch Timeline
+    </div>
+
+    <div class="clock-container">
+      <div class="countdown-cell days">
+        <span id="days" class="countdown-number">00</span>
+        <div class="countdown-unit">Days</div>
+      </div>
+      <div class="colon">:</div>
+      <div class="countdown-cell hours">
+        <span id="hours" class="countdown-number">00</span>
+        <div class="countdown-unit">Hours</div>
+      </div>
+      <div class="colon">:</div>
+      <div class="countdown-cell minutes">
+        <span id="minutes" class="countdown-number">00</span>
+        <div class="countdown-unit">Minutes</div>
+      </div>
+      <div class="countdown-cell seconds">
+        <span id="seconds" class="seconds-number">00</span>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+</div> 
+
+<!--
+  <footer class="site-footer">
+    <p class="footer-text">© 2025 Wisconsin Space Program</p>
+  </footer>
+-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="scripts/script.js"></script>
+
 </body>
 </html>
