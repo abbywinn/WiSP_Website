@@ -1,4 +1,3 @@
-// Header background changing on scroll
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.site-header');
     if (window.scrollY > 50) {
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-
                 } else {
                     entry.target.classList.remove('in-view');
                 }
@@ -29,24 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollArrow = document.querySelector('.scroll-down-arrow');
     if (scrollArrow) {
         scrollArrow.addEventListener('click', () => {
-            const sections=document.querySelectorAll('.leadership-section');
-            if (sections.length >1) {
-                sections[1].scrollIntoView({behavior: 'smooth'});
+            const sections = document.querySelectorAll('.leadership-section');
+            if (sections.length > 1) {
+                sections[1].scrollIntoView({ behavior: 'smooth' });
             }
         });
     }
-
 
     const observeParallax = (selector) => {
         const element = document.querySelector(selector);
         if (element) observeParallaxElement(element);
     };
+
     observeParallax('.parallax-section');
     observeParallax('.info-panels-parallax');
-    document.querySelectorAll('.leadership-card, .leadership-subtitle, .leadership-title, .fade-in').forEach(el => {
-        observeParallaxElement(el);
-    });
-    document.querySelectorAll('.rocket-divider').forEach(el => observeParallaxElement(el));
+
+    document.querySelectorAll('.leadership-card, .leadership-subtitle, .leadership-title, .fade-in, .rocket-divider, .streak-line-wrapper')
+        .forEach(el => observeParallaxElement(el));
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -267,4 +264,230 @@ function fadeToAltBackground(toAlt) {
       }
     });
   }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+const timeline = document.querySelector(".timeline-container");
+const clock = document.querySelector(".clock-container");
+const toggleBtn = document.querySelector(".timeline-toggle");
+const chevron = toggleBtn.querySelector(".chevron");
+
+
+gsap.to("#scroll-rocket", {
+  opacity: 0,
+  ease: "power1.out",
+  scrollTrigger: {
+    trigger: ".rocket-section",
+    start: "bottom bottom",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+
+
+
+
+
+
+gsap.set([timeline, clock], { x: 0 });
+timeline.style.pointerEvents = "none";
+clock.style.pointerEvents = "none";
+
+
+gsap.from(timeline, {
+  scrollTrigger: {
+    trigger: ".dashboard-section",
+    start: "top 10%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  duration: 0.5,
+  ease: "power3.out",
+  onStart: () => timeline.style.pointerEvents = "auto",
+  onReverseComplete: () => timeline.style.pointerEvents = "none"
+});
+
+
+gsap.from(".timeline-item", {
+  scrollTrigger: {
+    trigger: ".dashboard-section",
+    start: "top 10%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: 40,
+  duration: 0.6,
+  ease: "power3.out",
+  stagger: {
+    each: 0.12,  
+    from: "start"
+  }
+});
+gsap.from(clock, {
+  scrollTrigger: {
+    trigger: ".dashboard-section",
+    start: "top 75%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  duration: 0.5,
+  ease: "power3.out",
+  onStart: () => clock.style.pointerEvents = "auto",
+  onReverseComplete: () => clock.style.pointerEvents = "none"
+});
+
+
+let isOpen = false;
+toggleBtn.addEventListener("click", () => {
+  if (!isOpen) {
+
+    gsap.to([timeline, clock], {
+      x: "100%",
+      duration: 0.5,
+      ease: "power2.inOut",
+      onStart: () => {
+        timeline.style.pointerEvents = "auto";
+        clock.style.pointerEvents = "auto";
+      }
+    });
+    gsap.to(chevron, { rotate: 180, duration: 0.3, ease: "power2.inOut" });
+  } else {
+
+    gsap.to([timeline, clock], {
+      x: 0,
+      duration: 0.5,
+      ease: "power2.inOut",
+      onComplete: () => {
+        timeline.style.pointerEvents = "auto";
+        clock.style.pointerEvents = "auto";
+      }
+    });
+    gsap.to(chevron, { rotate: 0, duration: 0.3, ease: "power2.inOut" });
+  }
+  isOpen = !isOpen;
+});
+
+
+
+
+
+
+
+
+
+
+
+gsap.from(".dashboard-bg", {
+  autoAlpha: 0,
+  y: 50,
+  duration: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".dashboard-bg",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
+
+gsap.from(".stat-wheel", {
+  autoAlpha: 0,
+  rotate: -180,
+  scale: 0.5,
+  duration: 1,
+  ease: "back.out(1.7)",
+  scrollTrigger: {
+    trigger: ".stat-wheel",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
+
+gsap.fromTo(
+  ".apogee-metric, .burntime-metric, .impulse-metric, .thrust-metric, .length-metric",
+  { autoAlpha: 0, y: 30 },
+  {
+    autoAlpha: 1,
+    y: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".apogee-metric",
+      start: "top 80%",
+      toggleActions: "play none none reverse"
+    }
+  }
+);
+
+document.querySelectorAll(".stat-value").forEach(el => {
+  let target = parseFloat(el.dataset.target);
+
+  ScrollTrigger.create({
+    trigger: el,
+    start: "top 90%",
+    onEnter: () => {
+      gsap.fromTo(el, { innerText: 0 }, {
+        innerText: target,
+        duration: 2,
+        snap: { innerText: 1 },
+        ease: "power1.out",
+        onUpdate: function () {
+          if (el.dataset.target.includes(".")) {
+            el.innerText = Number(el.innerText).toFixed(1);
+          }
+        }
+      });
+    }
+  });
+});
+
+const metrics = document.querySelectorAll('.apogee-metric, .burntime-metric,  .thrust-metric, .impulse-metric');
+
+metrics.forEach(metric => {
+  const statGroup = metric.querySelector('.stat-group');
+  const description = metric.querySelector('.stat-description');
+
+  metric.addEventListener('mouseenter', () => {
+    gsap.to(metric, { scale: 1.04, filter: "drop-shadow(0 0 18px rgba(255,255,255,0.85))", duration: 0.3 });
+    if (statGroup) gsap.to(statGroup, { opacity: 0, duration: 0.3 });
+    if (description) gsap.to(description, { opacity: 1, duration: 0.3 });
+  });
+
+  metric.addEventListener('mouseleave', () => {
+    gsap.to(metric, { scale: 1, filter: "drop-shadow(0 0 12px rgba(112,112,112,0.8))", duration: 0.3 });
+    if (statGroup) gsap.to(statGroup, { opacity: 1, duration: 0.3 });
+    if (description) gsap.to(description, { opacity: 0, duration: 0.3 });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const streakTarget = document.querySelector(".streak-line-wrapper");
+  if (!streakTarget) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("streak-animate");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(streakTarget);
 });

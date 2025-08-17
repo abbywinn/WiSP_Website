@@ -1,0 +1,154 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Oxanium', sans-serif;
+  background: black;
+  color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+.site-header,
+.site-footer {
+  scroll-snap-align: none;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0.5vh 3vw;
+  background: transparent;
+  transition: background 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.site-header.scrolled {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+}
+
+.logo-link,
+.btn-outline {
+  flex: 0 0 auto;
+}
+
+.site-header .logo {
+  height: 7vh;
+}
+
+.navigation {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  flex-wrap: nowrap;
+  flex-shrink: 1;
+  overflow: hidden;
+}
+
+.site-header .navigation a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.site-header .btn-outline {
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .navigation-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .navigation-wrapper.open {
+    transform: translateX(0);
+  }
+
+  .navigation.mobile-nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .navigation.mobile-nav a,
+  .navigation.mobile-nav .btn-outline {
+    padding: 15px;
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .navigation.mobile-nav .btn-outline:hover {
+    color: black;
+  }
+}
+
+
+.site-footer {
+  background: #1f1f1f;
+  color: rgba(255,255,255,0.6);
+  padding: 60px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.footer-text {
+  margin: 0;
+  color: rgba(123, 123, 123, 0.75);
+}

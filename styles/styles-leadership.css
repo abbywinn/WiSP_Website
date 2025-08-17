@@ -1,0 +1,177 @@
+.btn-outline {
+    padding: 10px 15px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s ease;
+    align-self: centert;
+    width: auto;
+}
+.site-header .btn-outline {
+    padding: 8px 15px;
+    font-size: 1rem;
+}
+.btn-outline:hover {
+    background: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+body.leadership-page {
+  background-image: url('../assets/images/star_background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.leadership-section {
+  color: white;
+  padding: 50px 0 0;
+}
+
+.leadership-title,
+.leadership-subtitle {
+  font-weight: 700;
+  text-transform: uppercase;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  opacity: 0;
+}
+
+.leadership-title {
+  font-size: 5rem;
+  margin: 10vh 0 20px;
+  text-align: left;
+}
+
+.leadership-subtitle {
+  font-size: 3rem;
+  margin: 0px 0 20px;
+  text-align: center;
+}
+
+.leadership-title.in-view,
+.leadership-subtitle.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.leadership-card {
+  opacity: 0;
+  text-align: center;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-bottom: 60px;
+}
+.leadership-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.profile-img {
+  width: 100%;
+  max-width: 20vw;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  object-fit: cover;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.profile-role {
+  font-size: 0.95rem;
+  font-weight: 400;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.email-icon {
+  color: #ccc;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.email-icon:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+@media (min-width: 992px) {
+  .col-lg-custom {
+    flex: 0 0 20%;
+    max-width: 40%;
+  }
+}
+@media (max-width: 1000px) {
+  .profile-img {
+    max-width: 55vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-img {
+    max-width: 55vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profile-role {
+    justify-content: center;
+  }
+
+  .leadership-title {
+    text-align: center;
+  }
+  .leadership-title {
+    font-size: 2.2rem;
+  }
+  .leadership-card {
+    margin-bottom: 5px;
+  }
+  .leadership-subtitle {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+}
+
+
+
+
+
+.btn-outline {
+  padding: 10px 15px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s ease;
+  width: auto;
+}
+.site-header .btn-outline {
+  padding: 8px 15px;
+  font-size: 1rem;
+}
+.btn-outline:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
