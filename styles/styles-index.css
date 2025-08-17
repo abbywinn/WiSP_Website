@@ -188,8 +188,8 @@
 .streak-line-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: -10px 0;
+  gap: 40px;
+  margin: -20px 0;
 }
 .streak-line {
   height: 6px;

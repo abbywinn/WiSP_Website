@@ -1,17 +1,22 @@
+
 .scroll-down-arrow {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.2rem;
-  color: white;
   text-align: center;
+  color: white;
   cursor: pointer;
   z-index: 10;
 }
 
 
+.scroll-down-arrow span {
+ font-size: 1.2rem;
+  opacity: 0.8;
+}
 .scroll-down-arrow i {
+  font-size: 2rem;
   position: relative;
   display: inline-block;
   animation: bounce 2s infinite;
@@ -28,6 +33,7 @@
     top: -5px;
   }
 }
+
 
 
 
@@ -114,7 +120,7 @@
 .streak-line-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: -10px;
   margin: -10px 0;
 }
 .streak-line {
@@ -128,7 +134,7 @@
 }
 .rocket-sideways {
   height: 60px;
-  margin-left: -75px;
+  margin-left: -35px;
   transform: none;
   opacity: 0;
   transition: transform 2s ease-out, opacity 1s ease;
@@ -151,7 +157,7 @@
 }
 .text-subheading {
     font-size: 1.7rem;
-    font-weight: 200;
+    font-weight: 600;
 }
 .text {
     font-size: 1.2rem;
@@ -215,10 +221,10 @@
     margin: 0;
   }
 .text-heading {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .text-subheading {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .text {
     font-size: 1rem;
@@ -237,6 +243,12 @@
   pointer-events: none;
 }
 
+.scroll-down-arrow span {
+ font-size: 1rem;
+}
+.scroll-down-arrow i {
+  font-size: 1.5rem;
+}
 }
 
 

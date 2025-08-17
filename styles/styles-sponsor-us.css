@@ -65,13 +65,22 @@ html, body {
 }
 
 .team-image {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
+/* Animate in when section is visible */
+.parallax-section.in-view .team-image {
+  opacity: 1;
+  transform: translateY(0);
+}
 .vignette {
   position: absolute;
   top: 0;
