@@ -305,6 +305,25 @@ gsap.to("#scroll-rocket", {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 gsap.set([timeline, clock], { x: 0 });
 timeline.style.pointerEvents = "none";
 clock.style.pointerEvents = "none";
@@ -382,6 +401,8 @@ toggleBtn.addEventListener("click", () => {
   }
   isOpen = !isOpen;
 });
+
+
 
 
 
@@ -490,4 +511,55 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
 
   observer.observe(streakTarget);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const smallMap = document.querySelector(".map-small");
+  const overlay = document.querySelector(".map-overlay");
+  const expandedMap = document.querySelector(".map-expanded");
+  const closeBtn = document.querySelector(".map-close");
+
+  
+  smallMap.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    gsap.fromTo(expandedMap, 
+      { scale: 0.5, opacity: 0 }, 
+      { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out" }
+    );
+  });
+
+  function closeMap() {
+    gsap.to(expandedMap, {
+      scale: 0.5, 
+      opacity: 0, 
+      duration: 0.4, 
+      ease: "power3.in",
+      onComplete: () => overlay.style.display = "none"
+    });
+  }
+
+  closeBtn.addEventListener("click", closeMap);
+
+  overlay.addEventListener("click", closeMap);
+  expandedMap.addEventListener("click", closeMap);
 });
