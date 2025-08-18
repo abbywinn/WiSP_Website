@@ -93,8 +93,6 @@ updateCountdown();
 
 
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -109,82 +107,39 @@ document.addEventListener('DOMContentLoaded', () => {
     text: document.getElementById('info-text'),
     desc: document.querySelector('.section-description'),
     img: document.getElementById('info-img'),
+    bg1: document.querySelector('.starry-bg'),
     bg2: document.querySelector('.alt-bg'),
     support: document.querySelectorAll('.rocket-support'),
   };
 
-  const partsArray = [...el.parts];
+  const partsArray   = [...el.parts];
   const supportArray = [...el.support];
 
+  const rocketTargets = [
+    el.exterior, el.interior, el.title, el.countdown, el.info,
+    ...partsArray, ...supportArray
+  ];
+
   const partData = {
-    'nose-cone': { 
-      name: 'Nose Cone', 
-      text: 'Our carbon fiber nosecone features a Von Kármán shape to reduce aerodynamic drag during flight and maintain stability at high speeds.', 
-      img: 'assets/images/rocket/parts/nose-cone.png' 
-    },
-    'main-chute': { 
-      name: 'Main Chute', 
-      text: 'The main chute is a large parachute deployed during the final phase of descent. It drastically reduces the rocket\'s speed in order to achieve a controlled landing.', 
-      img: 'assets/images/rocket/parts/main-chute.png' 
-    },
-    'av-bay': { 
-      name: 'Avionics Bay', 
-      text: 'The avionics bay is a compartment that houses the Half Badger\'s electronic systems, such as the flight computer and GPS. It is built to protect this equipment from shock loads, heat, and other environmental factors during flight.', 
-      img: 'assets/images/rocket/parts/av-bay.png' 
-    },
-    'drogue-chute': { 
-      name: 'Drogue Chute', 
-      text: 'The drogue chute is a smaller parachute that deploys shortly after the rocket reaches apogee. At this time, a controlled charge in the charge wells breaks the shear pins to release the chute. The drogue chute stabilizes the rocket during the initial phase of descent before the main chute deploys.', 
-      img: 'assets/images/rocket/parts/drogue-chute.png' 
-    },
-    'copvs': { 
-      name: 'Dual COPVs', 
-      text: 'Half Badger uses two composite overwrapped pressure vessels (COPVs) to pressurize the IPA and LOX tanks. High-pressure nitrogen gas is regulated and fed into the propellant tanks to move the fuel and oxidizer into the combustion chamber.', 
-      img: 'assets/images/rocket/parts/copvs.png' 
-    },
-    'ipa-tank': { 
-      name: 'IPA Tank', 
-      text: 'The IPA tank stores isopropyl alcohol, which is used as the fuel in our propulsion system. The tank is pressurized to maintain a consistent fuel flow to the engine during ignition and flight.', 
-      img: 'assets/images/rocket/parts/ipa-tank.png' 
-    },
-    'lox-tank': { 
-      name: 'LOX Tank', 
-      text: 'The LOX tank stores liquid oxygen, which serves as the oxidizer in our propulsion system. Since oxygen boils at around -183°C (-297°F) under normal atmospheric pressure, the tank is designed to handle cryogenic conditions. In particular, the end caps are sealed with Teflon O-rings, which are compatible with low temperatures.', 
-      img: 'assets/images/rocket/parts/lox-tank.png' 
-    },
-    'fins-nozzle': { 
-      name: 'Fins & Nozzle', 
-      text: 'The Half Badger\'s fins help it to fly straight during flight and avoid excessive rotation. The engine nozzle expands and accelerates gases produced by combustion, creating thrust that propels the rocket upward.', 
-      img: 'assets/images/rocket/parts/fins-nozzle.png' 
-    },
+    'nose-cone': { name: 'Nose Cone', text: 'Our carbon fiber nosecone features a Von Kármán shape to reduce aerodynamic drag during flight and maintain stability at high speeds.', img: 'assets/images/rocket/parts/nose-cone.png' },
+    'main-chute': { name: 'Main Chute', text: 'The main chute is a large parachute deployed during the final phase of descent. It drastically reduces the rocket\'s speed in order to achieve a controlled landing.', img: 'assets/images/rocket/parts/main-chute.png' },
+    'av-bay': { name: 'Avionics Bay', text: 'The avionics bay is a compartment that houses the Half Badger\'s electronic systems, such as the flight computer and GPS. It is built to protect this equipment from shock loads, heat, and other environmental factors during flight.', img: 'assets/images/rocket/parts/av-bay.png' },
+    'drogue-chute': { name: 'Drogue Chute', text: 'The drogue chute is a smaller parachute that deploys shortly after the rocket reaches apogee. At this time, a controlled charge in the charge wells breaks the shear pins to release the chute. The drogue chute stabilizes the rocket during the initial phase of descent before the main chute deploys.', img: 'assets/images/rocket/parts/drogue-chute.png' },
+    'copvs': { name: 'Dual COPVs', text: 'Half Badger uses two composite overwrapped pressure vessels (COPVs) to pressurize the IPA and LOX tanks. High-pressure nitrogen gas is regulated and fed into the propellant tanks to move the fuel and oxidizer into the combustion chamber.', img: 'assets/images/rocket/parts/copvs.png' },
+    'ipa-tank': { name: 'IPA Tank', text: 'The IPA tank stores isopropyl alcohol, which is used as the fuel in our propulsion system. The tank is pressurized to maintain a consistent fuel flow to the engine during ignition and flight.', img: 'assets/images/rocket/parts/ipa-tank.png' },
+    'lox-tank': { name: 'LOX Tank', text: 'The LOX tank stores liquid oxygen, which serves as the oxidizer in our propulsion system. Since oxygen boils at around -183°C (-297°F) under normal atmospheric pressure, the tank is designed to handle cryogenic conditions. In particular, the end caps are sealed with Teflon O-rings, which are compatible with low temperatures.', img: 'assets/images/rocket/parts/lox-tank.png' },
+    'fins-nozzle': { name: 'Fins & Nozzle', text: 'The Half Badger\'s fins help it to fly straight during flight and avoid excessive rotation. The engine nozzle expands and accelerates gases produced by combustion, creating thrust that propels the rocket upward.', img: 'assets/images/rocket/parts/fins-nozzle.png' },
   };
 
   let lastKey = 'av-bay';
   let glowAnim = null;
   let introComplete = false;
-  
-gsap.set([el.interior, el.countdown, el.info, ...partsArray, el.altBg], { autoAlpha: 0 });
-gsap.set(el.exterior, { x: '100vw', autoAlpha: 1 });
-gsap.set(el.title, { y: 30 });
 
-gsap.timeline({
-  defaults: { ease: 'power3.out' },
-  onComplete: () => {
-    introComplete = true;
-    showInfo(lastKey);
-    startGlow(document.querySelector('[data-part="av-bay"]'));
-  }
-})
-  .to(el.title, { autoAlpha: 1, y: 0, duration: 1 }, 0)
-  .to(el.exterior, { x: 0, duration: 0.7 }, 0)
-  .to(el.exterior, { autoAlpha: 1, duration: 0.7 }, '<')
-  
-  .to(el.exterior, { autoAlpha: 0, duration: 0.2 }, '>')
-  
-  .to(el.interior, { autoAlpha: 1, duration: 0 }, '<')
-  .to(supportArray, { autoAlpha: 1, duration: 0 }, '<')
-  
-  .to(partsArray, { autoAlpha: 1, stagger: 0, duration: 0.1 }, '>');
+  gsap.set(el.bg1, { autoAlpha: 1 });
+  gsap.set(el.bg2, { autoAlpha: 0 });
+  gsap.set([el.interior, el.countdown, el.info, ...partsArray, ...supportArray], { autoAlpha: 0 });
+gsap.set(el.exterior, { x: "100vw", autoAlpha: 1 });
+  gsap.set(el.title, { y: 30 });
 
   function startGlow(target) {
     glowAnim?.kill();
@@ -200,7 +155,6 @@ gsap.timeline({
       ease: 'power1.inOut',
     });
   }
-
   function stopGlow() {
     glowAnim?.kill();
     partsArray.forEach(p => gsap.set(p, { clearProps: 'scale,filter' }));
@@ -212,7 +166,7 @@ gsap.timeline({
     el.heading.textContent = data.name;
     el.text.textContent = data.text;
     el.img.src = data.img;
-    gsap.to(el.info, { autoAlpha: 1, duration: 0.3 });
+    gsap.to(el.info, { autoAlpha: 1, duration: 0.3, overwrite: 'auto' });
   }
 
   partsArray.forEach(part => {
@@ -226,51 +180,71 @@ gsap.timeline({
     });
   });
 
+  function playIntro() {
+    gsap.killTweensOf(rocketTargets);
 
 
+    gsap.set([el.interior, el.countdown, el.info, ...partsArray, ...supportArray], { autoAlpha: 0 });
+    gsap.set(el.exterior, { x: "100vw", autoAlpha: 1 });
+    gsap.set(el.title, { y: 30 });
 
-
-ScrollTrigger.create({
-  trigger: "#scroll-rocket",
-  start: "top 30%",
-  onEnter: () => fadeToAltBackground(true),
-  onLeaveBack: () => fadeToAltBackground(false)
-});
-
-function fadeToAltBackground(toAlt) {
-  const el = {
-    bg1: document.querySelector('.starry-bg'),
-    bg2: document.querySelector('.alt-bg'),
-  };
-
-  if (toAlt) {
-    gsap.to(el.bg1, { autoAlpha: 0, duration: 0.5 });
-    gsap.to(el.bg2, { autoAlpha: 1, duration: 0.5 });
-  } else {
-    gsap.to(el.bg1, { autoAlpha: 1, duration: 0.5 });
-    gsap.to(el.bg2, { autoAlpha: 0, duration: 0.5 });
-  }
-}
-
-
-
-
-  const scrollArrow = document.getElementById('scrollArrow');
-  if (scrollArrow) {
-    scrollArrow.addEventListener('click', () => {
-      const nextSection = document.getElementById('scroll-rocket');
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: 'smooth' });
+    gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      onComplete: () => {
+        introComplete = true;
+        showInfo(lastKey);
+        startGlow(document.querySelector('[data-part="av-bay"]'));
       }
-    });
+    })
+    .to(el.title, { autoAlpha: 1, y: 0, duration: 1, overwrite: 'auto' }, 0)
+.to(el.exterior, { x: 0, duration: 0.7, overwrite: 'auto' }, 0)
+    .to(el.exterior, { autoAlpha: 1, duration: 0.7, overwrite: 'auto' }, '<')
+    .to(el.exterior, { autoAlpha: 0, duration: 0.2, overwrite: 'auto' }, '>')
+    .set([el.interior, ...supportArray, ...partsArray], { autoAlpha: 1 }, '<');
   }
+
+  playIntro();
+
+  ScrollTrigger.create({
+    trigger: "#scroll-rocket",
+    start: "top 30%",
+    onEnter: () => {
+      gsap.to(el.bg1, { autoAlpha: 0, duration: 0.5, overwrite: 'auto' });
+      gsap.to(el.bg2, { autoAlpha: 1, duration: 0.5, overwrite: 'auto' });
+    },
+    onLeaveBack: () => {
+      gsap.to(el.bg1, { autoAlpha: 1, duration: 0.5, overwrite: 'auto' });
+      gsap.to(el.bg2, { autoAlpha: 0, duration: 0.5, overwrite: 'auto' });
+    }
+  });
+
+  const fadeTargets = [...partsArray, ...supportArray, el.interior, el.info].filter(Boolean);
+
+  ScrollTrigger.create({
+    trigger: ".dashboard-section",
+    start: "top center",
+    onEnter: () => {
+      gsap.killTweensOf(rocketTargets);
+      stopGlow?.();
+
+      gsap.set(fadeTargets, { autoAlpha: 0 });
+
+gsap.set(el.exterior, { autoAlpha: 1, x: 0 });
+gsap.to(el.exterior, {
+  x: "-100vw",
+  duration: 1,
+  ease: "power2.inOut",
+  overwrite: "auto"
 });
+    },
+    onLeaveBack: () => {
+      gsap.killTweensOf(rocketTargets);
+      gsap.set(el.exterior, { autoAlpha: 1, x: "-100vw" });
+      playIntro();
+    }
+  });
 
-
-
-
-
-
+});
 
 
 
@@ -281,129 +255,126 @@ function fadeToAltBackground(toAlt) {
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-const timeline = document.querySelector(".timeline-container");
-const clock = document.querySelector(".clock-container");
+const timeline  = document.querySelector(".timeline-container");
+const clock     = document.querySelector(".clock-container");
 const toggleBtn = document.querySelector(".timeline-toggle");
-const chevron = toggleBtn.querySelector(".chevron");
+const chevron   = toggleBtn?.querySelector(".chevron");
+const overlay   = document.querySelector(".timeline-overlay");
 
+const mq = window.matchMedia("(min-width: 1024px)");
+const isDesktop = () => mq.matches;
 
-gsap.to("#scroll-rocket", {
-  opacity: 0,
-  ease: "power1.out",
-  scrollTrigger: {
-    trigger: ".rocket-section",
-    start: "bottom bottom",
-    end: "bottom top",
-    scrub: true
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-gsap.set([timeline, clock], { x: 0 });
-timeline.style.pointerEvents = "none";
-clock.style.pointerEvents = "none";
-
-
-gsap.from(timeline, {
-  scrollTrigger: {
-    trigger: ".dashboard-section",
-    start: "top 10%",
-    toggleActions: "play none none reverse"
-  },
-  opacity: 0,
-  duration: 0.5,
-  ease: "power3.out",
-  onStart: () => timeline.style.pointerEvents = "auto",
-  onReverseComplete: () => timeline.style.pointerEvents = "none"
-});
-
-
-gsap.from(".timeline-item", {
-  scrollTrigger: {
-    trigger: ".dashboard-section",
-    start: "top 10%",
-    toggleActions: "play none none reverse"
-  },
-  opacity: 0,
-  y: 40,
-  duration: 0.6,
-  ease: "power3.out",
-  stagger: {
-    each: 0.12,  
-    from: "start"
-  }
-});
-gsap.from(clock, {
-  scrollTrigger: {
-    trigger: ".dashboard-section",
-    start: "top 75%",
-    toggleActions: "play none none reverse"
-  },
-  opacity: 0,
-  duration: 0.5,
-  ease: "power3.out",
-  onStart: () => clock.style.pointerEvents = "auto",
-  onReverseComplete: () => clock.style.pointerEvents = "none"
-});
+gsap.set([timeline, clock], { x: "100%", opacity: 0 });
+gsap.set(overlay, { opacity: 0 });
+if (timeline) timeline.style.pointerEvents = "auto"; 
 
 
 let isOpen = false;
-toggleBtn.addEventListener("click", () => {
-  if (!isOpen) {
 
-    gsap.to([timeline, clock], {
-      x: "100%",
-      duration: 0.5,
-      ease: "power2.inOut",
-      onStart: () => {
-        timeline.style.pointerEvents = "auto";
-        clock.style.pointerEvents = "auto";
-      }
-    });
-    gsap.to(chevron, { rotate: 180, duration: 0.3, ease: "power2.inOut" });
-  } else {
-
-    gsap.to([timeline, clock], {
-      x: 0,
-      duration: 0.5,
-      ease: "power2.inOut",
-      onComplete: () => {
-        timeline.style.pointerEvents = "auto";
-        clock.style.pointerEvents = "auto";
-      }
-    });
-    gsap.to(chevron, { rotate: 0, duration: 0.3, ease: "power2.inOut" });
+function openTimeline() {
+  gsap.to([timeline, clock], {
+    x: 0,
+    opacity: 1,
+    duration: 0.5,
+    ease: "power2.inOut",
+  });
+  gsap.to(toggleBtn, {
+    x: -timeline.offsetWidth,
+    duration: 0.5,
+    ease: "power2.inOut",
+  });
+  if (!isDesktop()) {
+    gsap.to(overlay, { opacity: 1, duration: 0.3 });
+    if (chevron) gsap.to(chevron, { rotate: 180, duration: 0.3 });
   }
-  isOpen = !isOpen;
+  isOpen = true;
+}
+
+function closeTimeline() {
+  gsap.to([timeline, clock], {
+    x: "100%",
+    duration: 0.5,
+    ease: "power2.inOut",
+    onComplete: () => gsap.set([timeline, clock], { opacity: 0 })
+  });
+  gsap.to(toggleBtn, {
+    x: 0, 
+    duration: 0.5,
+    ease: "power2.inOut",
+  });
+  if (!isDesktop()) {
+    gsap.to(overlay, { opacity: 0, duration: 0.3 });
+    if (chevron) gsap.to(chevron, { rotate: 0, duration: 0.3 });
+  }
+  isOpen = false;
+}
+
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    if (isOpen) closeTimeline();
+    else openTimeline();
+  });
+}
+if (overlay) {
+  overlay.addEventListener("click", closeTimeline);
+}
+
+ScrollTrigger.matchMedia({
+  "(min-width: 1024px)": function () {
+    gsap.set([timeline, clock], { x: "100%", opacity: 0 });
+
+    const st = ScrollTrigger.create({
+      trigger: ".dashboard-section", 
+      start: "top 80%",
+      end: "bottom bottom",
+      onEnter: () => {
+        gsap.to([timeline, clock], {
+          x: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out"
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to([timeline, clock], {
+          x: "100%",
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.in"
+        });
+      }
+    });
+
+    return () => st.kill();
+  },
+
+  "(max-width: 1023px)": function () {
+    closeTimeline();
+
+    const stMobile = ScrollTrigger.create({
+      trigger: ".dashboard-section",
+      start: "top 80%",
+      end: "bottom bottom",
+      onEnter: () => {},
+      onLeave: () => closeTimeline(),
+      onLeaveBack: () => closeTimeline()
+    });
+
+    return () => stMobile.kill();
+  }
 });
 
+mq.addEventListener("change", () => {
+  if (isDesktop()) gsap.set(overlay, { opacity: 0 });
 
+  if (isDesktop()) {
+    gsap.set([timeline, clock], { x: "100%", opacity: 0 });
+  } else {
+    closeTimeline();
+  }
 
+  ScrollTrigger.refresh();
+});
 
 
 
@@ -539,7 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const expandedMap = document.querySelector(".map-expanded");
   const closeBtn = document.querySelector(".map-close");
 
-  
+
   smallMap.addEventListener("click", () => {
     overlay.style.display = "flex";
     gsap.fromTo(expandedMap, 
