@@ -244,7 +244,59 @@ gsap.to(el.exterior, {
     }
   });
 
+
+
+const arrow = document.querySelector(".scroll-down-arrow");
+const firstSection = document.querySelector(".hero-section"); 
+const secondSection = document.querySelector(".dashboard-section");
+
+arrow.addEventListener("click", () => {
+  secondSection.scrollIntoView({ behavior: "smooth" });
+
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 700);
 });
+
+
+ScrollTrigger.create({
+  trigger: secondSection,
+  start: "top 80%", 
+  onEnter: () => gsap.to(arrow, { autoAlpha: 0, duration: 0.3 }),
+  onLeaveBack: () => gsap.to(arrow, { autoAlpha: 1, duration: 0.3 })
+});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -384,7 +436,6 @@ mq.addEventListener("change", () => {
 
 
 
-
 gsap.from(".dashboard-bg", {
   autoAlpha: 0,
   y: 50,
@@ -427,9 +478,79 @@ gsap.fromTo(
   }
 );
 
-document.querySelectorAll(".stat-value").forEach(el => {
-  let target = parseFloat(el.dataset.target);
+gsap.from(".title-box2", {
+  autoAlpha: 0,
+  y: 30,
+  duration: 0.8,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".dashboard-section",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
 
+gsap.from(".map-wrapper, .map-heading", {
+  autoAlpha: 0,
+  y: 40,
+  duration: 0.8,
+  stagger: 0.2,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".dashboard-section",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
+
+gsap.fromTo(
+  ".map-small",
+  { autoAlpha: 0, y: 40 },
+  {
+    autoAlpha: 1,
+    y: 0,
+    duration: 0.8,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".dashboard-section",
+      start: "top 80%",
+      toggleActions: "play none none reverse"
+    },
+    onComplete: () => gsap.set(".map-small", { clearProps: "all" })
+  }
+);
+
+gsap.from(".map-expanded, .map-img", {
+  autoAlpha: 0,
+  scale: 0.95,
+  duration: 0.8,
+  stagger: 0.15,
+  ease: "back.out(1.3)",
+  scrollTrigger: {
+    trigger: ".dashboard-section",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
+
+document.querySelectorAll(".map-point").forEach((point, i) => {
+  gsap.from(point, {
+    autoAlpha: 0,
+    y: 20,
+    scale: 0.8,
+    duration: 0.6,
+    delay: i * 0.2,
+    ease: "back.out(1.5)",
+    scrollTrigger: {
+      trigger: ".dashboard-section",
+      start: "top 80%",
+      toggleActions: "play none none reverse"
+    }
+  });
+});
+
+document.querySelectorAll(".stat-value").forEach(el => {
+  const target = parseFloat(el.dataset.target);
   ScrollTrigger.create({
     trigger: el,
     start: "top 90%",
@@ -449,9 +570,7 @@ document.querySelectorAll(".stat-value").forEach(el => {
   });
 });
 
-const metrics = document.querySelectorAll('.apogee-metric, .burntime-metric,  .thrust-metric, .impulse-metric');
-
-metrics.forEach(metric => {
+document.querySelectorAll('.apogee-metric, .burntime-metric, .thrust-metric, .impulse-metric').forEach(metric => {
   const statGroup = metric.querySelector('.stat-group');
   const description = metric.querySelector('.stat-description');
 
@@ -472,18 +591,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const streakTarget = document.querySelector(".streak-line-wrapper");
   if (!streakTarget) return;
 
-  const observer = new IntersectionObserver((entries, obs) => {
+  new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("streak-animate");
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
-
-  observer.observe(streakTarget);
+  }, { threshold: 0.5 }).observe(streakTarget);
 });
-
 
 
 
@@ -534,3 +650,8 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.addEventListener("click", closeMap);
   expandedMap.addEventListener("click", closeMap);
 });
+
+
+
+
+

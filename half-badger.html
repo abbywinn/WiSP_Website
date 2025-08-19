@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles/styles-half-badger.css"/>
   <link rel="stylesheet" href="styles/styles-header.css"/>
+  
    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;600;700;800&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -92,9 +93,10 @@
       <img class="rocket-support" data-part="interstage" src="assets/images/rocket/interstage.png" /> 
     </div>
     
-    <div class="scroll-down-arrow">
-      <i class="bi bi-chevron-down"></i>
-    </div>
+  <div class="scroll-down-arrow" aria-label="Scroll to statistics">
+    <p>View Statistics</p>
+    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+  </div>
 
   </section>  
 
@@ -231,8 +233,10 @@
 <div class="timeline-overlay"></div>
 <div class="timeline-toggle" aria-controls="timeline" aria-expanded="false">
   <div class="toggle-inner">
-    <span class="chevron">›</span>
-    <span class="toggle-text">Schedule</span>
+    <span class="toggle-text">SCHEDULE</span>
+    <span class="chevron-box">
+      <i class="bi bi-chevron-right chevron"></i>
+    </span>
   </div>
 </div>
 
@@ -400,6 +404,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="scripts/script.js"></script>
-
 </body>
 </html>
