@@ -344,10 +344,10 @@ const keyframes = [
   { y: 330, offset: { x: 4, y: 1, z: 4 }, subId: "subphase-decline", segWeight: 2.0, seconds: 10, bgColor: 0x599dc2 },
   { y: 800, offset: { x: 12, y: 1, z: 12 }, subId: "subphase-apogee", segWeight: 1.5, seconds: 38, bgColor: 0x294887 },
   { y: 700,  offset: { x: 5, y: -1, z: 4 }, subId: "subphase-drogue", segWeight: 2, seconds: 39, bgColor: 0x2d4387 }, 
-  { y: 600,  offset: { x: 4,  y: -3,  z: 3 }, subId: "subphase-drogue-descent", segWeight: 1.2, seconds: 40, bgColor: 0x36467a }, 
-  { y: 150,  offset: { x: 0,  y: 7,  z: 12 }, subId: "subphase-main", segWeight: 2, seconds: 71, bgColor: 0x000033 },
-  { y: 90,   offset: { x: 0,  y: 5,  z: 2 }, subId: "subphase-main-descent", segWeight: 1.2, seconds: 72, bgColor: 0x000033 },
-  { y: 50,    offset: { x: 0,  y: 3,  z: 12 }, subId: "subphase-touchdown", segWeight: 1.6, seconds: 120, bgColor: 0x000033 }, 
+  { y: 600,  offset: { x: 4,  y: -3,  z: 3 }, subId: "subphase-drogue-descent", segWeight: 1.2, seconds: 40, bgColor: 0x5784ad }, 
+  { y: 150,  offset: { x: 0,  y: 7,  z: 12 }, subId: "subphase-main", segWeight: 2, seconds: 71, bgColor: 0xa2c9db },
+  { y: 90,   offset: { x: 0,  y: 5,  z: 2 }, subId: "subphase-main-descent", segWeight: 1.2, seconds: 72, bgColor: 0x97c4da },
+  { y: 50,    offset: { x: 0,  y: 3,  z: 12 }, subId: "subphase-touchdown", segWeight: 1.6, seconds: 120, bgColor: 0x97c4da }, 
 ];
 
 /* ---------------------------
