@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rocket Launch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/styles-half-badger.css"/>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;600;700;800&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js",
+      "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+
+
+
+
+        <header class="site-header">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/wisp-logo-white.png" alt="WiSP Logo" class="logo">
+                </a>
+
+                <nav class="navigation d-none d-md-flex mx-auto">
+                    <a href="HALF-BADGER2.html">HALF BADGER</a>
+                     <!--<a href="blog.html">BLOG</a>-->
+                    <a href="leadership.html">LEADERSHIP</a>
+                    <!--<a href="join-us.html">JOIN US</a>-->
+                </nav>
+
+                <a href="sponsor-us.html" class="btn-outline d-none d-md-block ms-auto">SPONSOR US</a>
+
+                <div class="menu-toggle d-md-none" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+                
+            <div class="navigation-wrapper d-md-none" id="mobile-nav">
+                <nav class="navigation mobile-nav">
+                    <a href="HALF-BADGER2.html">HALF BADGER</a>
+                     <!--<a href="blog.html">BLOG</a>-->
+                    <a href="leadership.html">LEADERSHIP</a>
+                    <!--<a href="join-us.html">JOIN US</a>-->
+                    <a href="sponsor-us.html" class="btn-outline">SPONSOR US</a>
+                </nav>
+            </div>
+        </header>
+    
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+  <div id="vignette-overlay"></div>
+  <div id="vignette-overlay-colors"></div>
+
+  <div id="rocket-track" aria-hidden="true"></div>
+
+  <main id="overlay-text">
+
+    
+  <section class="section" id="phase-prelaunch">
+    <div class="section-content">
+    <div class="current-phase-label">CURRENT PHASE:</div>
+    <h1>PRE-LAUNCH</h1>
+    <div class="subphase" id="subphase-alto">
+      <h2>ALTO PREPARATIONS</h2>
+      <p>Half Badger will be positioned for launch at the FAR-OUT Competition in Mojave, CA. Prior to flight, the ALTO team will perform a checklist of pre-launch operations.</p>
+       <img src="assets/images/join-us-2/alto.png" alt="ALTO Setup"/>
+    </div>
+    </div>
+  </section>
+
+  <section class="section" id="phase-ascent">
+    <div class="section-content">
+    <div class="current-phase-label">CURRENT PHASE:</div>
+    <h1>POWERED ASCENT</h1>
+    <div class="subphase" id="subphase-thrust">
+      <h2>MAXIMUM THRUST</h2> <!-- 5 -->
+      <p>Half Badger begins its ascent, rapidly hitting its peak thrust of 1000 lbf (around 4448 N).</p>
+      <!--<img src="images/thrust.png" alt="Rocket Thrust"/>-->
+    </div>
+    <div class="subphase" id="subphase-maxq">
+      <h2>MAX Q</h2> <!-- 4000 -->
+      <p>Half Badger pushes through Max Q, hitting peak aerodynamic pressure just above 4000 feet in the air. </p>
+      <img src="assets/images/join-us-2/maxq.png" alt="Max Q"/>
+    </div>
+    <div class="subphase" id="subphase-burnout">
+      <h2>BURNOUT</h2> <!-- 4000 -->
+      <p>Around the same alititude, Half Badger's engine stops firing, marking the beginning of unpowered flight.</p>
+    </div>
+    </div>
+  
+  </section>
+
+  <section class="section" id="phase-coast">
+    <div class="section-content">
+    <div class="current-phase-label">CURRENT PHASE:</div>
+    <h1>COAST</h1>
+    <div class="subphase" id="subphase-velocity">
+      <h2>SUBSONIC → TRANSONIC</h2> <!-- 4010 -->
+      <p>Half Badger is expected to enter transonic speeds, reaching its maximum velocity near burnout. This corresponds to slightly above the speed of sound.</p>
+    </div>
+    <div class="subphase" id="subphase-decline">
+      <h2>DECLINING VELOCITY</h2> <!-- 10000 -->
+      <p>Half Badger's velocity will continue to decrease for the remainder of its flight. It will transition back to subsonic speeds, while onboard electronics monitor for apogee.</p>
+    </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="phase-apogee">
+    <div class="section-content">
+    <div class="current-phase-label">CURRENT PHASE:</div>
+    <h1>APOGEE</h1> 
+    <div class="subphase" id="subphase-apogee">
+      <h2>20,000 FT ALTITUDE</h2> <!-- 20000 -->
+      <p>At 20,000 feet in the air, Half Badger has reached its maximum altitude. This is roughly the height of seven Burj Khalifas stacked.</p>
+    </div>
+    <div class="subphase" id="subphase-drogue">
+      <h2>DROGUE CHUTE DEPLOYMENT</h2> <!-- 20000 -->
+      <p>The ejection charges fire...</p>
+    </div>
+    </div>
+  </section>
+
+  <section class="section" id="phase-descent-I">
+    <div class="section-content">
+    <div class="current-phase-label">CURRENT PHASE:</div>
+    <h1>DESCENT I</h1>
+    <div class="subphase" id="subphase-drogue-descent">
+      <h2>DROGUE RECOVERY SEQUENCE</h2> <!-- 18000 -->
+      <p>Half badger descends</p>
+    </div>
+    </div>
+  </section>
+
+  <section class="section" id="phase-descent-II">
+    <div class="section-content">
+    <div class="current-phase-label">CURRENT PHASE:</div>
+    <h1>DESCENT II</h1>
+    <div class="subphase" id="subphase-main">
+      <h2>MAIN CHUTE DEPLOYMENT</h2> <!-- 2000 -->
+      <p>Half badger descends</p>
+    </div>
+    <div class="subphase" id="subphase-main-descent">
+      <h2>MAIN CHUTE DESCENT</h2> <!-- 1000 -->
+      <p>Half Badger slows its speed</p>
+    </div>
+    <div class="subphase" id="subphase-touchdown">
+      <h2>TOUCHDOWN</h2> <!-- 0 -->
+      <p>Half Badger touches down safely.</p>
+    </div>
+    </div>
+  </section>
+
+  
+</main>
+
+
+<aside id="timeline-panel">
+  <h2 class="timeline-header">LAUNCH MILESTONES</h2>
+  <div id="rocket-marker">
+    <img src="/assets/images/rocket-vertical.svg" alt="Rocket" />
+  </div>
+  <div class="timeline-lines"></div>
+  <div class="timeline"></div>
+  <div id="timeline-clock">T+ 00:00</div>
+</aside>
+
+
+
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

@@ -387,19 +387,35 @@ html, body {
 .timeline-item {
   display: flex;
   position: relative;
-  margin-bottom: 40px;
   align-items: flex-start;
+  min-height: 100px;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 21px; 
+  left: 9px;   
+  width: 2px;
+  height: calc(100% - 19px);
+  background: rgba(121, 121, 121, 0.6);
+}
+
+.timeline-item:last-child::after {
+  display: none;
 }
 
 .timeline-marker {
+  position: relative;
   width: 20px;
   height: 20px;
   min-width: 20px;
+  margin-right: 12px;
+  margin-top: 2px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin-right: 12px;
-  margin-top: 2px;
+  z-index: 1;
 }
 
 .timeline-item[data-complete="true"] .timeline-marker {
@@ -425,7 +441,6 @@ html, body {
   color: #e0e0e0;
 }
 
-
 @media (min-width: 1024px) {
   .timeline-container,
   .clock-container {
@@ -433,7 +448,7 @@ html, body {
     pointer-events: auto;
   }
   .timeline-container {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3));
   }
   .timeline-toggle,
   .timeline-overlay {
@@ -982,7 +997,7 @@ html, body {
 
 
 
-@media (max-width: 70vh) {
+@media (max-width: 60vh) {
     .title-box2 {
     flex: 0 0 45%;
     text-align: left;
@@ -993,43 +1008,44 @@ html, body {
     position: relative;
 }
  .dashboard-bg {
-    height: 140%;
-    width: 140%;
+    height: 110%;
+    width: 110%;
     background: url('../assets/images/rocket/stat-dashboard/mobile-stat-dashboard.png')
               no-repeat bottom left / contain;
  }
 
   .stat-wheel {
-    height: 100%;
-    width: 100%;
+    height: 85%;
+    width: 85%;
     background: url('../assets/images/rocket/stat-dashboard/mobile-stat-wheel.png') no-repeat bottom left / auto 100%;
   }
 
 
   .apogee-metric {
-    bottom: 15%;
-    left: 19%;
-    height: 46%;
-    width: 46%;
+    bottom: 16%;
+    left: 9%;
+    height: 44%;
+    width: 44%;
   }
   .impulse-metric {
-    bottom: 28%;
-    left: 47%;
-    height: 59%;
-    width: 59%;
+    bottom: 25%;
+    left: 38%;
+    height: 53%;
+    width: 53%;
     background: url('../assets/images/rocket/stat-dashboard/mobile-impulse.png') no-repeat center / contain;
   }
   .burntime-metric {
-    bottom: 58%;
-    left: 26%;
-    height: 40%;
-    width: 40%;
+    bottom: 56%;
+    left: 21%;
+    height: 36%;
+    width: 36%;
     background: url('../assets/images/rocket/stat-dashboard/mobile-burntime.png') no-repeat center / contain;
   }
   .thrust-metric {
-    bottom: -3%;
-    left: 62%;
-    height: 50%;
+    bottom: 2%;
+    left: 48%;
+    height: 35%;
+    width: 35%;
     background: url('../assets/images/rocket/stat-dashboard/mobile-thrust.png') no-repeat center / contain;
   }
 

@@ -1,183 +1,68 @@
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Oxanium', sans-serif;
-    background: black;
-    color: white;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
+  height: 100%;
+  background: #000;    
+  color: #fff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-.subteam-container {
-    flex: 0 1 500px;
-  position: relative;
-  width: 100%;
-  max-width: 80vmin; 
-  height: auto; 
-  position: relative;
-  width: 80vmin;
-  height: 80vmin;
-  margin-left: auto;
-
-  --wheel-size: 70%;
-  --icon-size: 70%;
-  --offset: 45%;
-  max-width: 60vh;
+#joinus-wrapper {
+  position: fixed;     
+  inset: 0;      
+  overflow: hidden;
 }
 
-.wheel-frame {
-  position: relative;
-  width: var(--wheel-size);
-  height: var(--wheel-size);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#scroll-spacer {
+  height: 500vh;    
 }
 
-.subteam-wheel {
+#three-canvas {
   position: absolute;
   inset: 0;
-  background: url('../assets/images/join-us/join-us-wheel.png') no-repeat center / contain;
-  z-index: 0;
-  pointer-events: none;
-}
-.subteam-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--size, var(--icon-size));
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%);
-}
-
-.avionics-subteam-wrapper {
-  --size: 73%;
-  transform: translate(-102%, 2%);
-}
-
-.structures-subteam-wrapper {
-  --size: 70%;
-  transform: translate(-102%, -102%);
-}
-
-.testandlaunch-subteam-wrapper {
-  --size: 72%;
-  transform: translate(2%, 2%);
-}
-
-.propulsion-subteam-wrapper {
-  --size: 72%;
-  transform: translate(2%, -101.5%);
-}
-
-.subteam {
   width: 100%;
   height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  transition: transform 0.25s ease, filter 0.25s ease;
+  display: block;
 }
 
-.avionics-subteam     { background-image: url('../assets/images/join-us/avionics.png'); }
-.structures-subteam   { background-image: url('../assets/images/join-us/structures.png'); }
-.testandlaunch-subteam{ background-image: url('../assets/images/join-us/testandlaunch.png'); }
-.propulsion-subteam   { background-image: url('../assets/images/join-us/propulsion.png'); }
-
-.subteam.active {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.9));
-  z-index: 20;
-}
-
-.subteam-select {
+#overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40%;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.2rem;
-  z-index: 3;
+  inset: 0;
+  display: grid;
+  place-items: center;
   pointer-events: none;
+  padding: 2rem;
 }
 
-
-.title-box {
-  flex: 1 1 400px; 
-  max-width: 600px; 
-  text-align: left;
+.section {
+  position: absolute;
+  max-width: min(80ch, 90vw);
+  text-align: center;
+  opacity: 0; 
+  transform: translateY(0);
+  transition: opacity 0.4s ease;
 }
 
-
-.section-description {
-    font-size: 1.2rem;
-    pointer-events: none;
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
 }
-.section-title {
-    font-size: 5rem;
-    color: white;
-    font-weight: 700;
-    pointer-events: none;
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
 }
-.btn-outline {
-    padding: 15px;
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.3s ease;
-    align-self: center; 
-    width: auto;
+.section p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #e5e7eb;
+  opacity: 0.95;
 }
 
-.btn-outline:hover {
-    background: white;
-    color: black;
-    transform: scale(1.05);
+@media (max-width: 640px) {
+  .section p { font-size: 1rem; }
 }
-
-.site-header .btn-outline {
-    padding: 8px 15px;
-    font-size: 1rem;
-}
-
-.join-us {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 4rem;
-  padding: 4rem 8%;
-  flex-wrap: wrap;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  max-height: 100vh;
-  min-width: 100vw;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

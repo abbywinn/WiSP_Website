@@ -76,7 +76,6 @@ html, body {
   transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Animate in when section is visible */
 .parallax-section.in-view .team-image {
   opacity: 1;
   transform: translateY(0);
