@@ -5,7 +5,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ---------------------------
-   Scene / Renderer / Camera / Lights
+   Scene / Renderer / Camera/ Lights
 ----------------------------*/
 const canvas = document.querySelector("#three-canvas");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
@@ -28,12 +28,9 @@ scene.add(dirLight);
 
 
 
-/* ---------------------------
-   Terrain
------------------------------- */
+
 import { ImprovedNoise } from "three/examples/jsm/math/ImprovedNoise.js";
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 
 function createRadialGradient(size = 512) {
   const canvas = document.createElement("canvas");
@@ -42,7 +39,7 @@ function createRadialGradient(size = 512) {
 
   const gradient = ctx.createRadialGradient(
     size/2, size/2, size * 0.2, 
-    size/2, size/2, size/2  
+    size/2, size/2, size/2    
   );
 
   gradient.addColorStop(0.0, "rgba(255,255,255,1)");
@@ -57,7 +54,6 @@ function createRadialGradient(size = 512) {
   texture.anisotropy = 16; 
   return texture;
 }
-
 
 
 
@@ -107,6 +103,7 @@ ground.rotation.x = -Math.PI / 2;
 ground.position.y = -3;
 ground.renderOrder = -1;
 scene.add(ground);
+
 
 
 
@@ -193,9 +190,9 @@ if (rockGeometries.length > 0) {
 Clouds
 ---------------------------*/
 const cloudLayers = [
-  { count: 1000, height: 160, spread: 600,  puffScale: 7 },   
+  { count: 1000, height: 160, spread: 600,  puffScale: 7 }, 
   { count: 600, height: 180, spread: 300,  puffScale: 2 },   
-  { count: 80,  height: 500, spread: 100, puffScale: 1.5 } 
+  { count: 80,  height: 500, spread: 100, puffScale: 1.5 }  
 ];
 
 const cloudMat = new THREE.MeshStandardMaterial({
@@ -213,11 +210,10 @@ const cloudGeometries = [];
 for (let layer of cloudLayers) {
   for (let i = 0; i < layer.count; i++) {
     const angle = Math.random() * Math.PI * 2;
-    const radius = Math.sqrt(Math.random()) * layer.spread;
+    const radius = Math.sqrt(Math.random()) * layer.spread; 
     const baseX = Math.cos(angle) * radius;
     const baseZ = Math.sin(angle) * radius;
     const baseY = layer.height + Math.random() * 1.5;
-
 
     const puffParts = 3 + Math.floor(Math.random() * 3);
     for (let j = 0; j < puffParts; j++) {
@@ -238,6 +234,7 @@ for (let layer of cloudLayers) {
   }
 }
 
+
 const mergedCloudGeo = BufferGeometryUtils.mergeGeometries(cloudGeometries, false);
 const cloudMesh = new THREE.Mesh(mergedCloudGeo, cloudMat);
 scene.add(cloudMesh);
@@ -252,9 +249,6 @@ scene.add(cloudMesh);
 
 
 
-/* ---------------------------
-   Load HDR Environment
----------------------------*/
 const pmremGenerator = new THREE.PMREMGenerator(renderer);
 pmremGenerator.compileEquirectangularShader();
 
@@ -264,29 +258,27 @@ new RGBELoader().load("assets/env/sky.hdr", (hdrTexture) => {
   hdrTexture.dispose();
 });
 
-/* ---------------------------
-   Load Models
----------------------------*/
 const loader = new GLTFLoader();
 let rocket, launchpad;
 
 const rocketHeight = 3;
 let camState;
 
-
-let tl;    
-let poseTimes = [];      
+let tl;                   
+let poseTimes = [];          
 let subphaseWindows = [];    
+
 let virtualOffsets = [];
-let virtualMap = {};     
-const PIXELS_PER_VIRTUAL = 20;
+let totalVirtual = 1;
+let virtualMap = {};   
+const PIXELS_PER_VIRTUAL = 20; 
 
 
-const travelFactor = 0.02; 
-const minSegmentDur = 0.12;  
+const travelFactor = 0.02;  
+const minSegmentDur = 0.12; 
 const fadeFrac = 0.12;      
-const minFade = 0.06;    
-const maxFade = 0.45;
+const minFade = 0.06;      
+const maxFade = 0.45;     
 
 Promise.all([
   loader.loadAsync("assets/models/rocket-animation.glb"),
@@ -294,7 +286,6 @@ Promise.all([
 ]).then(([rocketGLTF, padGLTF]) => {
   rocket = rocketGLTF.scene;
   launchpad = padGLTF.scene;
-
 
   rocket.scale.set(1, 1, 1);
   rocket.position.set(0, -1.8, 0);
@@ -328,9 +319,8 @@ Promise.all([
     offsetZ: camera.position.z - rocket.position.z
   };
 
-  buildScrollTimeline(); 
+  buildScrollTimeline();  
   applyCamera();
-
 
   onResize();
   updateFromTimeline();
@@ -340,30 +330,31 @@ Promise.all([
 
 
 
+
+
 /* ---------------------------
-   Rocket Postiion y values, Camera/Subphase Keyframes (in narrative order)
+   Rocket Postiion y values, Camera/Subphase Keyframes
 ---------------------------*/
 const keyframes = [
   { y: -1.8, offset: { x: -2, y: 4, z: 3 }, subId: "subphase-alto", segWeight: 10.0, seconds: 0, bgColor: 0x97c4da }, 
-  { y: 20, offset: { x: -1, y: 4, z: 1 }, subId: "subphase-thrust", segWeight: 10.0, seconds: 1, bgColor: 0xa2c9db }, 
+  { y: 20, offset: { x: -1, y: 4, z: 1 }, subId: "subphase-thrust", segWeight: 10.0, seconds: 1, bgColor: 0xa2c9db },
   { y: 80, offset: { x: 0, y: 3, z: 2 }, subId: "subphase-maxq", segWeight: 1.0, seconds: 7, bgColor: 0xc9a3b2 },
   { y: 250, offset: { x: 2, y: 4, z: 4 }, subId: "subphase-burnout", segWeight: 3.0, seconds: 8, bgColor: 0xf0cc89 },
-  { y: 300, offset: { x: 3, y: 2, z: 4 }, subId: "subphase-velocity", segWeight: 3.0, seconds: 9, bgColor: 0x7ec4d9 },
+  { y: 300, offset: { x: 3, y: 2, z: 4 }, subId: "subphase-velocity", segWeight: 4.0, seconds: 9, bgColor: 0x7ec4d9 },
   { y: 330, offset: { x: 4, y: 1, z: 4 }, subId: "subphase-decline", segWeight: 2.0, seconds: 10, bgColor: 0x599dc2 },
   { y: 800, offset: { x: 12, y: 1, z: 12 }, subId: "subphase-apogee", segWeight: 1.5, seconds: 38, bgColor: 0x294887 },
   { y: 700,  offset: { x: 5, y: -1, z: 4 }, subId: "subphase-drogue", segWeight: 2, seconds: 39, bgColor: 0x2d4387 }, 
   { y: 600,  offset: { x: 4,  y: -3,  z: 3 }, subId: "subphase-drogue-descent", segWeight: 1.2, seconds: 40, bgColor: 0x36467a }, 
   { y: 150,  offset: { x: 0,  y: 7,  z: 12 }, subId: "subphase-main", segWeight: 2, seconds: 71, bgColor: 0x000033 },
   { y: 90,   offset: { x: 0,  y: 5,  z: 2 }, subId: "subphase-main-descent", segWeight: 1.2, seconds: 72, bgColor: 0x000033 },
-  { y: 50,    offset: { x: 0,  y: 3,  z: 12 }, subId: "subphase-touchdown", segWeight: 1.2, seconds: 120, bgColor: 0x000033 }, 
+  { y: 50,    offset: { x: 0,  y: 3,  z: 12 }, subId: "subphase-touchdown", segWeight: 1.6, seconds: 120, bgColor: 0x000033 }, 
 ];
 
 /* ---------------------------
-   Scroll timeline
+   Build scroll timeline 
 ---------------------------*/
 function buildScrollTimeline() {
   tl = gsap.timeline({ defaults: { ease: "none" } });
-
 
   const segmentDurations = [];
   for (let i = 0; i < keyframes.length - 1; i++) {
@@ -376,21 +367,17 @@ function buildScrollTimeline() {
     segmentDurations[i] = segDur;
   }
 
-
   poseTimes = [];
   let acc = 0;
-
   tl.set(rocket.position, { y: keyframes[0].y }, 0);
   poseTimes[0] = 0;
 
   for (let i = 0; i < segmentDurations.length; i++) {
     const dur = segmentDurations[i];
-
     tl.to(rocket.position, { y: keyframes[i + 1].y, duration: dur }, ">");
     acc += dur;
     poseTimes[i + 1] = acc; 
   }
-
 
 
 
@@ -400,10 +387,8 @@ function buildScrollTimeline() {
     const end = (i < keyframes.length - 1) ? (poseTimes[i + 1]) : total;
     const span = Math.max(0.0001, end - start);
 
-
     const fade = clamp(span * fadeFrac, minFade, maxFade);
 
-  
     return {
       id: kf.subId,
       start, end,
@@ -429,13 +414,11 @@ ScrollTrigger.create({
   onUpdate: updateFromTimeline
 });
 
-
 virtualOffsets = [0];
 for (let i = 0; i < segmentDurations.length; i++) {
   virtualOffsets[i + 1] = virtualOffsets[i] + segmentDurations[i];
 }
 totalVirtual = Math.max(1e-6, virtualOffsets[virtualOffsets.length - 1]);
-
 
 virtualMap = {};
 subphaseWindows.forEach((win, i) => {
@@ -446,22 +429,16 @@ layoutTimelineEvents();
 
 }
 
-/* ---------------------------
-   Helpers
----------------------------*/
 function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
 function getCurrentSegmentIndex(time) {
-
   for (let i = 0; i < keyframes.length - 1; i++) {
     const t0 = poseTimes[i] ?? 0;
     const t1 = poseTimes[i + 1];
     if (time >= t0 && time <= t1) return i;
   }
-
   return Math.max(0, keyframes.length - 2);
 }
-
 
 
 
@@ -470,7 +447,6 @@ function formatTime(seconds) {
   const s = seconds % 60;
   return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
-
 
 function updateTimelineClock(currentTime) {
   if (!keyframes || keyframes.length === 0) return;
@@ -501,7 +477,6 @@ function updateBackgroundColor(currentTime) {
 
   const local = clamp((currentTime - t0) / (t1 - t0), 0, 1);
 
-
   const c0 = new THREE.Color(k0.bgColor);
   const c1 = new THREE.Color(k1.bgColor);
 
@@ -512,11 +487,9 @@ function updateBackgroundColor(currentTime) {
 }
 
 
-
 function updateFromTimeline() {
   if (!rocket || !tl) return;
   const time = tl.time();
-
 
   subphaseWindows.forEach(win => {
     const el = document.getElementById(win.id);
@@ -538,7 +511,6 @@ function updateFromTimeline() {
     el.style.pointerEvents = opacity > 0.1 ? "auto" : "none";
   });
 
-
   document.querySelectorAll(".section").forEach(section => {
     const subs = section.querySelectorAll(".subphase");
     const heading = section.querySelector("h1");
@@ -549,7 +521,6 @@ function updateFromTimeline() {
     heading.style.opacity = anyVisible ? 1 : 0;
     section.style.opacity = anyVisible ? 1 : 0;
   });
-
 
   const segIndex = getCurrentSegmentIndex(time);
   const k0 = keyframes[segIndex];
@@ -567,7 +538,6 @@ function updateFromTimeline() {
   camState.offsetY += (targetY - camState.offsetY) * lag;
   camState.offsetZ += (targetZ - camState.offsetZ) * lag;
   applyCamera();
-
 
   if (terrain) {
     const y = rocket.position.y;
@@ -592,7 +562,6 @@ function updateFromTimeline() {
       }
     });
   }
-
 
   const timelineEl = document.querySelector("#timeline-panel .timeline");
   const panel = document.getElementById("timeline-panel");
@@ -619,7 +588,6 @@ function updateFromTimeline() {
 
   const opacity = clamp(1.05 - dist / maxDist, 0.25, 1);
 
-
   const labelEl = ev.querySelector(".labels, .label");
   if (labelEl) {
     labelEl.style.transform = `scale(${scale})`;
@@ -640,7 +608,6 @@ function updateFromTimeline() {
 
 
 updateTimelineSegments();
-
 
     subphaseWindows.forEach((win, i) => {
       const el = timelineEl.querySelector(`.timeline-event[data-subid="${win.id}"]`);
@@ -669,7 +636,6 @@ function updateTimelineSegments() {
 
   linesContainer.innerHTML = "";
 
-
   const events = Array.from(timeline.querySelectorAll(".timeline-event")).map(ev => {
     const circle = ev.querySelector(".circle");
     const radius = circle ? (circle.offsetHeight / 2) : 0;
@@ -680,13 +646,13 @@ function updateTimelineSegments() {
     };
   }).sort((a, b) => a.top - b.top);
 
-
   for (let i = 0; i < events.length - 1; i++) {
     const thisCenter = events[i].top + events[i].height / 2;
     const nextCenter = events[i + 1].top + events[i + 1].height / 2;
 
-    const segTop    = thisCenter + events[i].radius;
+    const segTop    = thisCenter + events[i].radius;  
     const segHeight = (nextCenter - events[i + 1].radius) - segTop; 
+
     const seg = document.createElement("div");
     seg.className = "segment";
     seg.style.top = `${segTop}px`;
@@ -699,9 +665,6 @@ function updateTimelineSegments() {
 
 
 
-/* ---------------------------
-   Layout timeline container 
----------------------------*/
 function layoutTimelineEvents() {
   const timelineEl = document.querySelector("#timeline-panel .timeline");
   if (!timelineEl) return;
@@ -710,9 +673,6 @@ function layoutTimelineEvents() {
 }
 
 
-/* ---------------------------
-   Convert timeline time → virtual position
----------------------------*/
 function timeToVirtual(time) {
   const segIndex = getCurrentSegmentIndex(time);
   const t0 = poseTimes[segIndex];
@@ -726,9 +686,6 @@ function timeToVirtual(time) {
 
 
 
-/* ---------------------------
-   Apply camera transform
----------------------------*/
 function applyCamera() {
   if (!camState || !rocket) return;
   camera.position.set(
@@ -744,9 +701,6 @@ function applyCamera() {
   camera.updateMatrixWorld();
 }
 
-/* ---------------------------
-   Resize handling
----------------------------*/
 function onResize() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -757,9 +711,7 @@ function onResize() {
 }
 window.addEventListener("resize", onResize);
 
-/* ---------------------------
-   Render loop
----------------------------*/
+
 renderer.setAnimationLoop(() => {
   updateFromTimeline();
   renderer.render(scene, camera);
@@ -773,7 +725,7 @@ renderer.setAnimationLoop(() => {
 function setTimelineColumnPx() {
   const panel = document.getElementById('timeline-panel');
   if (!panel) return;
-  const px = Math.round(panel.clientWidth * 0.15);
+  const px = Math.round(panel.clientWidth * 0.15); 
   panel.style.setProperty('--timeline-x', `${px}px`);
 }
 window.addEventListener('resize', setTimelineColumnPx);
@@ -809,7 +761,6 @@ firstEvent.innerHTML = `
   <div class="circle big"></div>
 `;
     timelineEl.appendChild(firstEvent);
-
 
     for (let i = 1; i < subphaseEls.length; i++) {
       const spName = subphaseEls[i].querySelector("h2")?.textContent.trim();
