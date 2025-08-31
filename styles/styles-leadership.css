@@ -31,6 +31,7 @@ body.leadership-page {
 .leadership-section {
   color: white;
   padding: 50px 0 0;
+  
 }
 
 .leadership-title,
@@ -46,12 +47,14 @@ body.leadership-page {
   font-size: 5rem;
   margin: 10vh 0 20px;
   text-align: left;
+  font-family: 'Syncopate';
 }
 
 .leadership-subtitle {
   font-size: 3rem;
   margin: 0px 0 20px;
   text-align: center;
+  font-family: 'Syncopate';
 }
 
 .leadership-title.in-view,

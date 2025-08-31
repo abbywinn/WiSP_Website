@@ -167,6 +167,7 @@ html, body {
 .site-header .btn-outline {
   padding: 8px 15px;
   font-size: 1rem;
+  
 }
 .btn-outline:hover {
   background: white;
@@ -233,6 +234,7 @@ body.leadership-page {
 .leadership-title {
   font-size: 3rem;
   margin: 10vh 0 5vh;
+  font-family: 'Syncopate';
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
@@ -245,6 +247,7 @@ body.leadership-page {
   font-size: 3rem;
   margin: 0px 0 20px;
   text-align: center;
+  font-family: 'Syncopate';
 }
 
 .leadership-title.in-view,
@@ -347,8 +350,9 @@ body.leadership-page {
 
 
 .text-heading {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 700;
+    font-family: 'Syncopate';
 }
 .text-subheading {
     font-size: 1.7rem;
