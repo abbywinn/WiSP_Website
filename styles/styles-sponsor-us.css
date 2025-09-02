@@ -435,3 +435,40 @@ body.leadership-page {
   font-size: 1.5rem;
 }
 }
+
+
+
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.scroll-down-arrow p {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: rgb(208, 208, 208);
+}
+
+.scroll-down-arrow i {
+  font-size: 2rem;
+  display: inline-block;
+  position: relative;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { top: 0; }
+  40% { top: -10px; }
+  60% { top: -5px; }
+}
+
+.scroll-down-arrow.hide {
+  pointer-events: none;
+}

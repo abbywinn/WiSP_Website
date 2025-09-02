@@ -262,18 +262,15 @@
 
 
 
-
-
 .info-panels-parallax {
   position: relative;
-  height: 100%;
+  min-height: 100vh; 
   padding: 120px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: url('../assets/images/star_background.jpg') center / cover
-              no-repeat fixed;
+  background: url('../assets/images/star_background.jpg') center / cover no-repeat fixed;
   scroll-snap-align: start;
   z-index: 0;
 }
@@ -295,7 +292,7 @@
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 60px;
-  font-family: 'Syncopate'
+  font-family: 'Syncopate';
 }
 
 .panel-heading {
@@ -304,7 +301,6 @@
   margin-bottom: 20px;
   color: #fff;
   text-align: center;
-  
 }
 
 .panel-text {
@@ -345,7 +341,6 @@
 .info-panels-parallax.in-view .divider-line { height: 80%; }
 .rocket-divider.in-view .rocket-trail      { height: 290px; opacity: 1; }
 
-
 .rocket-divider {
   position: relative;
   display: flex;
@@ -368,7 +363,6 @@
   opacity: 1;
 }
 
-
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -378,18 +372,56 @@
 
 
 @media (max-width: 767.98px) {
-  .info-panels-parallax   { padding-top: 10vh; }
-  .divider-line           { display: none; }
-  .subtitle               { margin: 6vh 0 0; }
-  .info-panel,
-  .panel-text             { text-align: center; }
-  .info-panels-container  { padding: 0 12vw; }
+  .info-panels-parallax {
+    min-height: auto; 
+    padding: 80px 0 40px;
+    display: block; 
+  }
+
+  .subtitle {
+    margin: 6vh 0 30px;
+  }
+
+  .info-panels-container {
+    padding: 0 12vw;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-panel {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+  }
+
+  .panel-text {
+    text-align: center;
+  }
+
+  .divider-line,
+  .rocket-divider {
+    display: none; 
+  }
 }
 
 @media (max-width: 650px) {
-  .subtitle     { font-size: 2rem; margin-top: 5vh; }
-  .panel-heading{ font-size: 1.75rem; }
-  .panel-text   { font-size: 1rem; }
+  .subtitle {
+    font-size: 2rem;
+    margin-top: 5vh;
+  }
 
-  .info-panels-container { padding: 0 10vw; }
+  .panel-heading {
+    font-size: 1.75rem;
+  }
+
+  .panel-text {
+    font-size: 1rem;
+  }
+
+  .info-panels-container {
+    padding: 0 10vw;
+  }
 }

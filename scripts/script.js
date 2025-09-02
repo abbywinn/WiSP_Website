@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const launchDate = new Date("May 27, 2026 10:00:00").getTime();
+/*const launchDate = new Date("May 27, 2026 10:00:00").getTime();
 function pad(num) {
   return String(num).padStart(2, '0');
 }
@@ -82,7 +82,7 @@ function updateCountdown() {
 }
 
 updateCountdown();
-
+*/
 
 
 
