@@ -7,7 +7,6 @@ html, body {
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
 }
 
 .snap-section {
