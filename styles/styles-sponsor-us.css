@@ -471,3 +471,23 @@ body.leadership-page {
 .scroll-down-arrow.hide {
   pointer-events: none;
 }
+
+
+.button-group {
+    display: flex;
+    gap: 8px; /* space between buttons */
+    flex-wrap: wrap; /* allows wrapping if necessary */
+}
+
+@media (max-width: 600px) {
+    .button-group {
+        flex-direction: column; /* stack buttons vertically on small screens */
+        gap: 12px; /* more space between stacked buttons */
+    }
+}
+
+@media (max-width: 400px) {
+    .team-image-wrapper {
+        display: none;
+    }
+}
